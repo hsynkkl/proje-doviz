@@ -1,0 +1,18 @@
+[
+  {
+    "id": "USD",
+    "title": "American Dollar"
+  },
+  {
+    "id": "TL",
+    "title": "Turkish Lira"
+  },
+  {
+    "id": "EUR",
+    "title": "Euro"
+  },
+  {
+    "id": "GBP",
+    "title": "British Pound"
+  }
+]
