@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1055970142208",
+    "project_id": "exchangeapp-1a70c",
+    "storage_bucket": "exchangeapp-1a70c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055970142208:android:05a898b6a58540de5010e5",
+        "android_client_info": {
+          "package_name": "com.exchangeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055970142208-feasfsi7bjhmhofvmhdev2f8cukvdsbr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_9dK_UdxQA9m08FSib7vPlsy-Kvx-vos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055970142208-feasfsi7bjhmhofvmhdev2f8cukvdsbr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
