@@ -8,6 +8,7 @@ import Button from '../../Components/Button';
 import FilterCard from '../../Components/FilterCard';
 import HistoryRenderItem from '../../Components/HistoryRenderItem';
 import useTranslations from '../../Translation/useTranslations';
+import TitleOfPage from '../../Components/TitleOfPages';
 const History = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
 
@@ -39,6 +40,10 @@ const History = ({navigation}) => {
               source={require('../../utils/imgs/logo.png')}
             />
           </View>
+
+          <View style={styles.titleOfPageContainer}>
+            <TitleOfPage title={'Geçmiş Ekranı'}></TitleOfPage>
+          </View>
           <View style={styles.historyContainer}>
             <View style={styles.titleContainer}>
               <View style={styles.sellingCurrencyContainer}>
@@ -64,7 +69,8 @@ const History = ({navigation}) => {
               )}
             </View>
           </View>
-          <View style={{height: 285}}>
+
+          <View style={{height: 275}}>
             {showTheFilterCard && <FilterCard />}
           </View>
           <View style={styles.buttonContainer}>

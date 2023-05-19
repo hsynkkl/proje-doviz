@@ -38,9 +38,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 15,
     margin: '5%',
-    height: '55%',
+    // height: '45%',
     alignItems: 'center',
-    paddingTop: '2%',
+    paddingTop: '10%',
+    paddingBottom: '10%',
   },
   underContainer: {
     backgroundColor: 'rgba(255,255,255,0.3)',
@@ -48,7 +49,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   underInnerContainer: {
-    height: '30%',
     alignItems: 'center',
   },
   centerInnerContainer: {},

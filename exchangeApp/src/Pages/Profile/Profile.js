@@ -6,7 +6,7 @@ import getDataFromDB from '../../utils/Functions/dbFunctions/usersDB/getDataFrom
 import {useSelector} from 'react-redux';
 import useTranslations from '../../Translation/useTranslations';
 import LanguageCard from '../../Components/LanguageCard/LanguageCard';
-
+import TitleOfPage from '../../Components/TitleOfPages';
 const Profile = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
   const [showLanguageCard, setShowLanguageCard] = useState(false);
@@ -36,6 +36,7 @@ const Profile = ({navigation}) => {
         style={styles.linearGradient}>
         <View style={styles.container}>
           <View style={styles.innerContainer}>
+            {/*  */}
             <View style={styles.imageContainer}>
               <Image style={styles.image} source={{uri: photo}} />
               <Text style={styles.textName}>{nameSurname}</Text>

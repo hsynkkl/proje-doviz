@@ -61,7 +61,7 @@ const CreateAccLast = ({navigation, route}) => {
 
       alert(t.alertCreateAccSuccesfully);
       navigation.navigate('CreateAccPage');
-      navigation.navigate('MainPage');
+      navigation.navigate('Anasayfa');
     } else if (value[1] === false) {
       if (value[0] === 1) {
         alert(t.alertCreateAccUnSuccesfully2);

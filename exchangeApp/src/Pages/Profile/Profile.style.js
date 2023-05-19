@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
 
     color: 'rgba(0, 0, 0, 0.5)',
   },
+  titleContainer: {},
 });
 
 export default styles;

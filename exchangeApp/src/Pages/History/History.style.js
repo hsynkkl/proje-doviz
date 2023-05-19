@@ -45,6 +45,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
   },
+  titleOfPageContainer: {
+    // backgroundColor: 'gray',
+    //flex: 1,
+  },
   sellingCurrencyContainer: {width: '28%', marginBottom: 10},
   buyingCurrencyContainer: {width: '35%', marginBottom: 10},
   amountContainer: {width: '22%', marginBottom: 10},

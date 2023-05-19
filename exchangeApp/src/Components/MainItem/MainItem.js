@@ -10,7 +10,9 @@ const MainItem = ({item}) => {
       <Text style={styles.textBalance}>{balance.toFixed(3)}</Text>
       <View style={styles.innerContainer}>
         <View style={[styles.circle, {backgroundColor: item.color}]}></View>
-        <Text style={styles.textTitle}>{item.name}</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.textTitle}>{item.name}</Text>
+        </View>
       </View>
     </View>
   );

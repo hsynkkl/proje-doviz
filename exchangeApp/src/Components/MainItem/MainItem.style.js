@@ -13,5 +13,5 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 5,
   },
-  textTitle: {},
+  titleContainer: {},
 });

@@ -14,7 +14,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import convertData from '../../utils/Functions/otherFunctions/convertData';
 import Item from '../../Components/MainItem';
 import useTranslations from '../../Translation/useTranslations';
-
+import TitleOfPage from '../../Components/TitleOfPages';
 const Main = () => {
   const {t, changeLanguage} = useTranslations();
 
@@ -60,12 +60,12 @@ const Main = () => {
             />
           </View>
           <View>
+            <TitleOfPage title={t.assets}></TitleOfPage>
+          </View>
+          <View>
             {hide && (
               <View>
                 <View style={styles.centerContainer}>
-                  <View style={styles.upperContainer}>
-                    <Text style={styles.upperTitle}>{t.assets}</Text>
-                  </View>
                   <DonutChart
                     data={donutChartData}
                     strokeWidth={15}
