@@ -74,6 +74,9 @@ export default {
     language: 'Dil',
     department: 'Şube: ',
     balance: 'Bakiye: ',
+    accounts: 'HESAPLARIM',
+    historyScreen: 'Geçmiş Ekranı',
+    hide: 'Gizle',
   },
   eng: {
     welcome: 'Welcome.',
@@ -120,7 +123,7 @@ export default {
     alertUnSuccesfullyTansfer:
       'Your transaction has not been completed successfully',
     assets: 'ASSETS',
-
+    accounts: 'ACCOUNTS',
     currencyRates: 'Currency Rates',
     addFav: 'Add Favorites',
     favCurrencyRates: 'Favorites Currency Rates',
@@ -151,6 +154,8 @@ export default {
     fakeBarRight: 'Do it without go',
     department: 'Department: ',
     balance: 'Balance: ',
+    historyScreen: 'History Screen',
+    hide: 'Hide',
   },
   pl: {
     welcome: 'Powitanie.',
@@ -224,6 +229,9 @@ export default {
     alertFailTransaction: 'Niepowodzenie transakcji',
     language: 'Język',
     alertBalanceFail: 'Nie Masz Wystarczających środków na koncie',
+    accounts: 'KONTA',
+    historyScreen: 'Ekran Historii',
+    hide: 'Ukrywać',
   },
   '': {
     welcome: 'Hoş Geldiniz.',

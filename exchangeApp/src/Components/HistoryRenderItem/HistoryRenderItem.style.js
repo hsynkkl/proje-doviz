@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
-    width: '100%',
+    width: '98%',
     //backgroundColor: 'blue',
   },
   sellingCurrencyContainer: {width: '28%', marginBottom: 10},

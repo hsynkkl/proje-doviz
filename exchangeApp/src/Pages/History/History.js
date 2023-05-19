@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Alert, Image, FlatList} from 'react-native';
 import styles from './History.style';
 import {useSelector} from 'react-redux';
@@ -11,14 +11,26 @@ import useTranslations from '../../Translation/useTranslations';
 import TitleOfPage from '../../Components/TitleOfPages';
 const History = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
-
   const userId = useSelector(s => s.userIdList);
   const selectedItems = useSelector(a => a.filterSelectedList);
   const [showTheThingUnder, setShowTheThingUnder] = useState(false);
   const [flatListData, setFlatListData] = useState();
   const [showTheFilterCard, setShowTheFilterCard] = useState(false);
-  const denemeFiltering = async () => {
+  const [nameOfButtonFilter, setNameOfButtonFilter] = useState(t.show);
+  useEffect(() => {
+    const fetchData = async () => {
+      setFlatListData(await filteringHistory(userId, selectedItems));
+      setShowTheThingUnder(true);
+    };
+    fetchData();
+  }, []);
+  const filtering = async () => {
     setShowTheFilterCard(!showTheFilterCard);
+    if (nameOfButtonFilter === t.show) {
+      setNameOfButtonFilter(t.hide);
+    } else {
+      setNameOfButtonFilter(t.show);
+    }
   };
   const getData = async () => {
     setFlatListData(await filteringHistory(userId, selectedItems));
@@ -42,7 +54,7 @@ const History = ({navigation}) => {
           </View>
 
           <View style={styles.titleOfPageContainer}>
-            <TitleOfPage title={'Geçmiş Ekranı'}></TitleOfPage>
+            <TitleOfPage title={t.historyScreen}></TitleOfPage>
           </View>
           <View style={styles.historyContainer}>
             <View style={styles.titleContainer}>
@@ -75,9 +87,9 @@ const History = ({navigation}) => {
           </View>
           <View style={styles.buttonContainer}>
             <Button
-              text={t.filter}
+              text={nameOfButtonFilter}
               borderRadius={14}
-              onPress={denemeFiltering}
+              onPress={filtering}
               colorText={'black'}
               colorButton={'#FCD779'}
               width={170}

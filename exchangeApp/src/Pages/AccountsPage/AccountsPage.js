@@ -6,7 +6,11 @@ import LinearGradient from 'react-native-linear-gradient';
 import acc from '../../utils/Functions/dbFunctions/userAccountsDB/getAccFromDB';
 import AccountCardItem from '../../Components/AccountCardItem';
 import TitleOfPage from '../../Components/TitleOfPages';
+import useTranslations from '../../Translation/useTranslations';
+
 const AccountsPage = () => {
+  const {t, changeLanguage} = useTranslations();
+
   const userId = useSelector(s => s.userIdList);
   const userIdStr = userId[0].userId;
   const [flatListData, setFlatListData] = useState();
@@ -30,7 +34,7 @@ const AccountsPage = () => {
             />
           </View>
           <View>
-            <TitleOfPage title="HESAPLARIM"></TitleOfPage>
+            <TitleOfPage title={t.accounts}></TitleOfPage>
           </View>
           <View>
             <FlatList
