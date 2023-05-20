@@ -1,1 +1,2 @@
 # proje-doviz
+## proje amacı
