@@ -36,7 +36,6 @@ const Profile = ({navigation}) => {
         style={styles.linearGradient}>
         <View style={styles.container}>
           <View style={styles.innerContainer}>
-            {/*  */}
             <View style={styles.imageContainer}>
               <Image style={styles.image} source={{uri: photo}} />
               <Text style={styles.textName}>{nameSurname}</Text>

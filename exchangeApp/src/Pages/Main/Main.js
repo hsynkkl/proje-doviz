@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {
   View,
   Image,
-  Text,
   FlatList,
   useWindowDimensions,
   ActivityIndicator,
@@ -15,7 +14,8 @@ import convertData from '../../utils/Functions/otherFunctions/convertData';
 import Item from '../../Components/MainItem';
 import useTranslations from '../../Translation/useTranslations';
 import TitleOfPage from '../../Components/TitleOfPages';
-const Main = () => {
+import OpenDrawerButton from '../../Components/OpenDrawerButton';
+const Main = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
 
   const {width, height} = useWindowDimensions();
@@ -48,6 +48,9 @@ const Main = () => {
   if (loading === false) {
     return <ActivityIndicator size="large" />;
   }
+  const deneme = () => {
+    navigation.openDrawer();
+  };
   return (
     <View style={styles.containerLinear}>
       <LinearGradient
@@ -60,8 +63,11 @@ const Main = () => {
               source={require('../../utils/imgs/logo.png')}
             />
           </View>
+
           <View>
-            <TitleOfPage title={t.assets}></TitleOfPage>
+            <View style={{alignItems: 'center'}}>
+              <TitleOfPage title={t.assets}></TitleOfPage>
+            </View>
           </View>
           <View>
             {hide && (
@@ -88,6 +94,15 @@ const Main = () => {
                       horizontal
                     />
                   </View>
+                </View>
+                <View
+                  style={{
+                    //backgroundColor: 'gray',
+                    alignItems: 'flex-end',
+                    justifyContent: 'flex-end',
+                    marginTop: '40%',
+                  }}>
+                  <OpenDrawerButton onPress={deneme}></OpenDrawerButton>
                 </View>
               </View>
             )}
