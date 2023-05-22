@@ -77,6 +77,7 @@ export default {
     accounts: 'HESAPLARIM',
     historyScreen: 'Geçmiş Ekranı',
     hide: 'Gizle',
+    empty: 'Yapılmış işlem bulunmamaktadır.',
   },
   eng: {
     welcome: 'Welcome.',
@@ -156,6 +157,7 @@ export default {
     balance: 'Balance: ',
     historyScreen: 'History Screen',
     hide: 'Hide',
+    empty: 'There are no transactions made.',
   },
   pl: {
     welcome: 'Powitanie.',
@@ -232,6 +234,7 @@ export default {
     accounts: 'KONTA',
     historyScreen: 'Ekran Historii',
     hide: 'Ukrywać',
+    empty: 'Nie zawiera żadnych transakcji.',
   },
   '': {
     welcome: 'Hoş Geldiniz.',

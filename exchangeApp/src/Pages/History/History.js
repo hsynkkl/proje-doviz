@@ -9,6 +9,7 @@ import FilterCard from '../../Components/FilterCard';
 import HistoryRenderItem from '../../Components/HistoryRenderItem';
 import useTranslations from '../../Translation/useTranslations';
 import TitleOfPage from '../../Components/TitleOfPages';
+import EmptyResultCard from '../../Components/EmptyResultCard';
 const History = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
   const userId = useSelector(s => s.userIdList);
@@ -16,7 +17,8 @@ const History = ({navigation}) => {
   const [showTheThingUnder, setShowTheThingUnder] = useState(false);
   const [flatListData, setFlatListData] = useState();
   const [showTheFilterCard, setShowTheFilterCard] = useState(false);
-  const [nameOfButtonFilter, setNameOfButtonFilter] = useState(t.show);
+  const [nameOfButtonFilter, setNameOfButtonFilter] = useState(t.filter);
+  const [showEmptyCard, setShowEmptyCard] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       setFlatListData(await filteringHistory(userId, selectedItems));
@@ -26,14 +28,20 @@ const History = ({navigation}) => {
   }, []);
   const filtering = async () => {
     setShowTheFilterCard(!showTheFilterCard);
-    if (nameOfButtonFilter === t.show) {
+    if (nameOfButtonFilter === t.filter) {
       setNameOfButtonFilter(t.hide);
     } else {
-      setNameOfButtonFilter(t.show);
+      setNameOfButtonFilter(t.filter);
     }
   };
   const getData = async () => {
     setFlatListData(await filteringHistory(userId, selectedItems));
+    const length = await filteringHistory(userId, selectedItems);
+    if (length.length === 0) {
+      setShowEmptyCard(true);
+    } else {
+      setShowEmptyCard(false);
+    }
     setShowTheThingUnder(true);
   };
 
@@ -72,6 +80,7 @@ const History = ({navigation}) => {
               </View>
             </View>
             <View style={{height: 255}}>
+              {showEmptyCard && <EmptyResultCard text={t.empty} />}
               {showTheThingUnder && (
                 <FlatList
                   data={flatListData}
