@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text, View} from 'react-native';
+import {TouchableOpacity, Text} from 'react-native';
 import styles from './OpenDrawerButton.style';
 import AntDesign from 'react-native-vector-icons/Entypo';
 
