@@ -37,6 +37,7 @@ const Main = () => {
       if (value.length === undefined) {
         setHide(false);
       } else {
+        setHide(false);
         setHide(true);
       }
       setLoading(true);
