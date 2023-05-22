@@ -48,7 +48,7 @@ const Main = ({navigation}) => {
   if (loading === false) {
     return <ActivityIndicator size="large" />;
   }
-  const deneme = () => {
+  const openMenu = () => {
     navigation.openDrawer();
   };
   return (
@@ -95,14 +95,8 @@ const Main = ({navigation}) => {
                     />
                   </View>
                 </View>
-                <View
-                  style={{
-                    //backgroundColor: 'gray',
-                    alignItems: 'flex-end',
-                    justifyContent: 'flex-end',
-                    marginTop: '40%',
-                  }}>
-                  <OpenDrawerButton onPress={deneme}></OpenDrawerButton>
+                <View style={styles.menuButtonContainer}>
+                  <OpenDrawerButton onPress={openMenu}></OpenDrawerButton>
                 </View>
               </View>
             )}

@@ -52,6 +52,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   centerInnerContainer: {},
+  menuButtonContainer: {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    marginTop: '40%',
+  },
 });
 
 export default styles;
