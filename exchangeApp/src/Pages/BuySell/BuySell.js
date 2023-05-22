@@ -197,7 +197,8 @@ const BuySell = ({navigation}) => {
                     placeHolder={''}
                     backgroundColor={'rgba(255, 255, 255, 0.051)'}
                     width={50}
-                    onType={setInputAmount}></Input>
+                    onType={setInputAmount}
+                  />
                 </View>
               </View>
             </View>
