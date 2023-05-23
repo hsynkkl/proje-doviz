@@ -3,6 +3,7 @@ import {
   View,
   Image,
   FlatList,
+  Text,
   useWindowDimensions,
   ActivityIndicator,
 } from 'react-native';
@@ -15,6 +16,8 @@ import Item from '../../Components/MainItem';
 import useTranslations from '../../Translation/useTranslations';
 import TitleOfPage from '../../Components/TitleOfPages';
 import OpenDrawerButton from '../../Components/OpenDrawerButton';
+import randomIban from '../../utils/Functions/otherFunctions/randomIban';
+import getAccFromDB from '../../utils/Functions/dbFunctions/userAccountsDB/getAccFromDB';
 const Main = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
 
@@ -48,9 +51,10 @@ const Main = ({navigation}) => {
   if (loading === false) {
     return <ActivityIndicator size="large" />;
   }
-  const openMenu = () => {
+  const openMenu = async () => {
     navigation.openDrawer();
   };
+
   return (
     <View style={styles.containerLinear}>
       <LinearGradient

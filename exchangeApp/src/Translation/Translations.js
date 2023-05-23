@@ -78,6 +78,7 @@ export default {
     historyScreen: 'Geçmiş Ekranı',
     hide: 'Gizle',
     empty: 'Yapılmış işlem bulunmamaktadır.',
+    iban: 'IBAN: ',
   },
   eng: {
     welcome: 'Welcome.',
@@ -158,6 +159,7 @@ export default {
     historyScreen: 'History Screen',
     hide: 'Hide',
     empty: 'There are no transactions made.',
+    iban: 'IBAN: ',
   },
   pl: {
     welcome: 'Powitanie.',
@@ -235,6 +237,7 @@ export default {
     historyScreen: 'Ekran Historii',
     hide: 'Ukrywać',
     empty: 'Nie zawiera żadnych transakcji.',
+    iban: 'IBAN: ',
   },
   '': {
     welcome: 'Hoş Geldiniz.',

@@ -1,10 +1,11 @@
 import {openDatabase} from 'react-native-sqlite-storage';
-
+import randomIban from '../../otherFunctions/randomIban';
 export default function setDataToDB(
   userId,
   accountType,
   currencyType,
   departmant,
+  iban,
 ) {
   return new Promise(resolve => {
     let _return = [];
@@ -24,7 +25,7 @@ export default function setDataToDB(
 
       db.transaction(txn => {
         txn.executeSql(
-          `CREATE TABLE IF NOT EXISTS userAccounts (id INTEGER PRIMARY KEY AUTOINCREMENT,userId TEXT, accountType TEXT,currencyType TEXT,departmant TEXT,accountTypeText TEXT,currencyTypeText TEXT,departmantText TEXT,balance TEXT)`,
+          `CREATE TABLE IF NOT EXISTS userAccounts (id INTEGER PRIMARY KEY AUTOINCREMENT,userId TEXT, accountType TEXT,currencyType TEXT,departmant TEXT,accountTypeText TEXT,currencyTypeText TEXT,departmantText TEXT,balance TEXT,iban TEXT)`,
           [],
           (sqlTxn, res) => {},
           error => {
@@ -51,7 +52,7 @@ export default function setDataToDB(
             if (kayitVar != true) {
               db.transaction(txn => {
                 txn.executeSql(
-                  `INSERT INTO userAccounts (userId,accountType,currencyType,departmant,accountTypeText,currencyTypeText,departmantText,balance) VALUES (?,?,?,?,?,?,?,?)`,
+                  `INSERT INTO userAccounts (userId,accountType,currencyType,departmant,accountTypeText,currencyTypeText,departmantText,balance,iban) VALUES (?,?,?,?,?,?,?,?,?)`,
                   [
                     userId,
                     accountType[0],
@@ -61,6 +62,7 @@ export default function setDataToDB(
                     currencyType[1],
                     departmant[1],
                     '10000',
+                    iban,
                   ],
                   (sqlTxn, res) => {
                     _return = [0, true];

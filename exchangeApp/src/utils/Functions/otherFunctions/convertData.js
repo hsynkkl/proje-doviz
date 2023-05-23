@@ -1,7 +1,7 @@
 import {openDatabase} from 'react-native-sqlite-storage';
 const colors = ['#faf3e0', '#eabf9f', '#b68973', '#28527a'];
 
-export default function getAccFromDB(userId) {
+export default function convertData(userId) {
   return new Promise(resolve => {
     const colors = ['#faf3e0', '#eabf9f', '#b68973', '#28527a'];
     //console.log(ratesList);

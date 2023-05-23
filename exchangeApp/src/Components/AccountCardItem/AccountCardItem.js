@@ -14,15 +14,19 @@ const AccountCardItem = ({item}) => {
           <AntDesign name="account-cash-outline" size={50} color={'#8d6e63'} />
         </Text>
       </View>
-      <View style={styles.innertopContainer}>
+      <View style={styles.innerContainer}>
         <Text style={styles.textTitle}>{t.department}</Text>
         <Text style={styles.textItem}>{item.currencyTypeText}</Text>
       </View>
-      <View style={{flexDirection: 'row', padding: 6}}>
+      <View style={styles.innerContainer}>
         <Text style={styles.textTitle}>{t.balance}</Text>
         <Text style={styles.textItem}>
           {item.balance} {item.currencyTypeText}
         </Text>
+      </View>
+      <View style={styles.innerContainer}>
+        <Text style={styles.textTitle}>{t.iban} </Text>
+        <Text style={styles.textItem}>{item.iban}</Text>
       </View>
     </View>
   );

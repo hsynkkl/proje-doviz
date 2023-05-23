@@ -17,9 +17,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 20,
-    //backgroundColor: 'black',
   },
-  flatListContainer: {},
+  flatListContainer: {paddingBottom: '15%'},
 });
 
 export default styles;

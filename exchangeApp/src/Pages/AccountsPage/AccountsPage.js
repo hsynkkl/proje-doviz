@@ -36,7 +36,7 @@ const AccountsPage = () => {
           <View>
             <TitleOfPage title={t.accounts}></TitleOfPage>
           </View>
-          <View>
+          <View style={styles.flatListContainer}>
             <FlatList
               data={flatListData}
               renderItem={Card}

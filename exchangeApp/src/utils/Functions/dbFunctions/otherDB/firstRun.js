@@ -8,7 +8,7 @@ export default function firstRun() {
 
     db.transaction(txn => {
       txn.executeSql(
-        `CREATE TABLE IF NOT EXISTS userAccounts (id INTEGER PRIMARY KEY AUTOINCREMENT,userId TEXT, accountType TEXT,currencyType TEXT,departmant TEXT,accountTypeText TEXT,currencyTypeText TEXT,departmantText TEXT,balance TEXT)`,
+        `CREATE TABLE IF NOT EXISTS userAccounts (id INTEGER PRIMARY KEY AUTOINCREMENT,userId TEXT, accountType TEXT,currencyType TEXT,departmant TEXT,accountTypeText TEXT,currencyTypeText TEXT,departmantText TEXT,balance TEXT,iban TEXT)`,
         [],
         (sqlTxn, res) => {},
         error => {

@@ -8,10 +8,7 @@ export default StyleSheet.create({
   imageContainer: {
     alignItems: 'center',
   },
-  innertopContainer: {
-    flexDirection: 'row',
-    padding: 6,
-  },
+
   textTitle: {
     fontFamily: 'Poppins',
     fontStyle: 'normal',
@@ -29,4 +26,5 @@ export default StyleSheet.create({
     lineHeight: 30,
     color: 'rgba(0, 0, 0, 0.5)',
   },
+  innerContainer: {flexDirection: 'row', padding: 6},
 });

@@ -9,6 +9,7 @@ import acc from '../../utils/Functions/dbFunctions/userAccountsDB/getAccFromDB';
 
 import {useDispatch} from 'react-redux';
 import {useSelector} from 'react-redux';
+import randomIban from '../../utils/Functions/otherFunctions/randomIban';
 const CreateAccLast = ({navigation, route}) => {
   const {t, changeLanguage} = useTranslations();
   const [accTypeState, setAccTypeState] = useState();
@@ -53,7 +54,14 @@ const CreateAccLast = ({navigation, route}) => {
 
   const gotoMainPage = async () => {
     await setValues();
-    value = await setAccToDb(userId, accType2, exchangeType2, department2);
+    const iban = await randomIban();
+    value = await setAccToDb(
+      userId,
+      accType2,
+      exchangeType2,
+      department2,
+      iban,
+    );
     if (value[1] === true) {
       const accs = await acc(userId);
 
