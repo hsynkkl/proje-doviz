@@ -12,7 +12,7 @@ export default function firstRun() {
         [],
         (sqlTxn, res) => {},
         error => {
-          console.log('db userAccounts silindi ' + error.message);
+          console.log('error on creating table ' + error.message);
         },
       );
     });

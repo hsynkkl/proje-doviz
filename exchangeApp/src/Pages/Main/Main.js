@@ -70,36 +70,38 @@ const Main = ({navigation}) => {
             </View>
           </View>
           <View>
-            {hide && (
-              <View>
-                <View style={styles.centerContainer}>
-                  <DonutChart
-                    data={donutChartData}
-                    strokeWidth={15}
-                    radius={90}
-                    containerWidth={width - PADDING * 2}
-                    containerHeight={105 * 2}
-                    type="butt"
-                    startAngle={0}
-                    endAngle={360}
-                    animationType="slide"
-                  />
-                </View>
-                <View style={styles.underContainer}>
-                  <View style={styles.underInnerContainer}>
-                    <FlatList
-                      data={flatListData}
-                      renderItem={Item}
-                      keyExtractor={item => item.id}
-                      horizontal
+            <View>
+              {hide && (
+                <View>
+                  <View style={styles.centerContainer}>
+                    <DonutChart
+                      data={donutChartData}
+                      strokeWidth={15}
+                      radius={90}
+                      containerWidth={width - PADDING * 2}
+                      containerHeight={105 * 2}
+                      type="butt"
+                      startAngle={0}
+                      endAngle={360}
+                      animationType="slide"
                     />
                   </View>
+                  <View style={styles.underContainer}>
+                    <View style={styles.underInnerContainer}>
+                      <FlatList
+                        data={flatListData}
+                        renderItem={Item}
+                        keyExtractor={item => item.id}
+                        horizontal
+                      />
+                    </View>
+                  </View>
                 </View>
-                <View style={styles.menuButtonContainer}>
-                  <OpenDrawerButton onPress={openMenu}></OpenDrawerButton>
-                </View>
+              )}
+              <View style={styles.menuButtonContainer}>
+                <OpenDrawerButton onPress={openMenu}></OpenDrawerButton>
               </View>
-            )}
+            </View>
           </View>
         </View>
       </LinearGradient>

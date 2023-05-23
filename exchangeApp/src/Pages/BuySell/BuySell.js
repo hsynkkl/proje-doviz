@@ -17,6 +17,7 @@ import incomingMoney from '../../utils/Functions/dbFunctions/userAccountsDB/inco
 import useTranslations from '../../Translation/useTranslations';
 import RenderBuySellItem from '../../Components/RenderBuySellItem';
 import {useDispatch} from 'react-redux';
+import AmountInput from '../../Components/AmountInput/AmountInput';
 
 const BuySell = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
@@ -53,13 +54,9 @@ const BuySell = ({navigation}) => {
     });
   }, []);
   const handleSubmit = async () => {
-    const calculatedRates = await calculateRates(
-      ratesList,
-      buyingItemShortTitle,
-      sellingItemShortTitle,
-      inputAmount,
-    );
-    setPriceBuying(calculatedRates);
+    await handleSearch();
+    // calculatedRates = 12;
+    console.log(priceBuying);
     const isTrue = await transferingMoney(
       userId,
       inputAmount,
@@ -68,7 +65,7 @@ const BuySell = ({navigation}) => {
     if (isTrue == true) {
       const isTrue2 = await incomingMoney(
         userId,
-        calculatedRates,
+        priceBuying,
         sellingItemShortTitle,
       );
       const dateTime = await getDate();
@@ -167,9 +164,24 @@ const BuySell = ({navigation}) => {
       />
     );
   };
+
   if (loading) {
     return <ActivityIndicator size="large" />;
   }
+  const handleSearch = async text => {
+    const calculatedRates = await calculateRates(
+      ratesList,
+      buyingItemShortTitle,
+      sellingItemShortTitle,
+      text,
+    );
+    setInputAmount(text);
+    if (calculatedRates.length === 3) {
+      setPriceBuying('0');
+    } else {
+      setPriceBuying(calculatedRates);
+    }
+  };
   return (
     <View style={styles.containerLinear}>
       <LinearGradient
@@ -192,13 +204,13 @@ const BuySell = ({navigation}) => {
               </View>
               <View style={styles.textUpperPriceContainer}>
                 <View style={styles.inputContainer}>
-                  <Input
+                  {/* <Input
                     keyboardType={'number-pad'}
                     placeHolder={''}
                     backgroundColor={'rgba(255, 255, 255, 0.051)'}
                     width={50}
-                    onType={setInputAmount}
-                  />
+                    onType={setInputAmount}></Input> */}
+                  <AmountInput onSearch={handleSearch} />
                 </View>
               </View>
             </View>

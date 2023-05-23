@@ -15,6 +15,7 @@ function Login({navigation}) {
   }, []);
   function goToSignUp() {
     navigation.navigate('SignUpPage');
+    delete2();
   }
   function login() {
     navigation.navigate('LoginSecondPage');
