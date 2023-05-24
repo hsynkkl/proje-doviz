@@ -59,7 +59,8 @@ const SignUpCon = ({navigation}) => {
                   onPressIn={() => {
                     setOpen(true);
                   }}
-                  placeHolder={datePlaceHolder.substr(0, 15)}></Input>
+                  placeHolder={t.dateofBD}
+                  value={datePlaceHolder.substr(4, 11)}></Input>
                 <DatePicker
                   modal
                   mode="date"

@@ -26,6 +26,11 @@ const getPrices = () => {
   axios
     .get(process.env.LIST_URL)
     .then((response) => {
+      const randomValues = () => {
+        const value = Math.random() * 10 + 15;
+        const valueSTR = value.toFixed(3);
+        return valueSTR.toString();
+      };
       const list = [
         (USD = response.data.USD),
         (EUR = response.data.EUR),
@@ -44,10 +49,11 @@ const getPrices = () => {
         return {
           id: item.Kod,
           name: item.CurrencyName,
-          sellPrice: item.ForexSelling,
+          sellPrice: randomValues(),
           buyPrice: item.ForexBuying,
         };
       });
+      //console.log(randomValues());
       socketHandler.emit("exchange", priceList);
     })
     .catch((err) => {
@@ -57,4 +63,4 @@ const getPrices = () => {
 
 setInterval(() => {
   getPrices();
-}, 10000);
+}, 500);
