@@ -1,8 +1,8 @@
 # 									Currency App
 ## Introduce
-- Used Technologies
-- Usage
-- Screenshots
+- [Used Technologies](https://github.com/hsynkkl/proje-doviz#used-technologies)
+- [Usage](https://github.com/hsynkkl/proje-doviz#usage)
+- [Screenshots](https://github.com/hsynkkl/proje-doviz#screenshots)
 
 ## Used Technologies
 - React Native
