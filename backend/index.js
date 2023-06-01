@@ -53,7 +53,6 @@ const getPrices = () => {
           buyPrice: item.ForexBuying,
         };
       });
-      //console.log(randomValues());
       socketHandler.emit("exchange", priceList);
     })
     .catch((err) => {
@@ -63,4 +62,4 @@ const getPrices = () => {
 
 setInterval(() => {
   getPrices();
-}, 500);
+}, 2000);
