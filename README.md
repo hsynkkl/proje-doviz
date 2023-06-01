@@ -5,8 +5,8 @@
 - [Screenshots](https://github.com/hsynkkl/proje-doviz#screenshots)
 
 ## Used Technologies
-- React Native
-- SQLite
+- [React Native](https://reactnative.dev/)
+- [SQLite](https://sqlite.org/index.html)
 
 
 ## Usage
