@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 14,
     marginTop: 50,
-    marginLeft: 12,
+    // marginLeft: 12,
     justifyContent: 'space-around',
     alignItems: 'flex-start',
     paddingLeft: 40,
