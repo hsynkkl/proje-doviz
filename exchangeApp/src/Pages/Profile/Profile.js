@@ -7,6 +7,8 @@ import {useSelector} from 'react-redux';
 import useTranslations from '../../Translation/useTranslations';
 import LanguageCard from '../../Components/LanguageCard/LanguageCard';
 import TitleOfPage from '../../Components/TitleOfPages';
+
+import AwesomeAlert from 'react-native-awesome-alerts';
 const Profile = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
   const [showLanguageCard, setShowLanguageCard] = useState(false);
@@ -14,6 +16,7 @@ const Profile = ({navigation}) => {
   const [phoneNumber, setPhoneNumber] = useState();
   const [photo, setPhoto] = useState();
   const userId = useSelector(s => s.userIdList);
+  const [showAlert, setShowAlert] = useState(false);
   var datas = [];
 
   useEffect(() => {
@@ -25,7 +28,12 @@ const Profile = ({navigation}) => {
     }
     fetchData();
   }, []);
-
+  const showAlertTrue = () => {
+    setShowAlert(true);
+  };
+  const hideAlert = () => {
+    setShowAlert(false);
+  };
   const editLanguage = () => {
     setShowLanguageCard(!showLanguageCard);
   };

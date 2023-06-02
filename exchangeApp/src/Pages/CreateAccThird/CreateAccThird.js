@@ -6,7 +6,7 @@ import Button from '../../Components/Button';
 import setAccToDb from '../../utils/Functions/dbFunctions/userAccountsDB/setAccToDB';
 import useTranslations from '../../Translation/useTranslations';
 import acc from '../../utils/Functions/dbFunctions/userAccountsDB/getAccFromDB';
-
+import CustomAlert from '../../Components/CustomAlert/';
 import {useDispatch} from 'react-redux';
 import {useSelector} from 'react-redux';
 import randomIban from '../../utils/Functions/otherFunctions/randomIban';
@@ -18,6 +18,8 @@ const CreateAccLast = ({navigation, route}) => {
   const userIdSelector = useSelector(s => s.userIdList);
   const userId = userIdSelector[0].userId.toString();
   const dispatch = useDispatch();
+  const [showAlert, setShowAlert] = useState(false);
+  const [hideAlert, setHideAlert] = useState(false);
   let accType = [];
   let exchangeType = [];
   let accType2 = [];
@@ -36,6 +38,12 @@ const CreateAccLast = ({navigation, route}) => {
       setDepartmentState(route.params.departmant[1]);
     }
   };
+  // const hideAlert = () => {
+  //   setShowAlert(false);
+  // };
+  // const showAlertTrue = () => {
+  //   setShowAlert(true);
+  // };
   useEffect(() => {
     const accTypesDatas = route.params.accTypeDatas;
 
@@ -72,9 +80,14 @@ const CreateAccLast = ({navigation, route}) => {
       navigation.navigate('Anasayfa');
     } else if (value[1] === false) {
       if (value[0] === 1) {
-        alert(t.alertCreateAccUnSuccesfully2);
+        setHideAlert(true);
+        setShowAlert(true);
+        //alert(t.alertCreateAccUnSuccesfully2);
       } else {
-        alert(t.alertCreateAccUnsuccesfully);
+        setHideAlert(true);
+        setShowAlert(true);
+
+        //alert(t.alertCreateAccUnsuccesfully);
       }
     }
   };
@@ -152,6 +165,7 @@ const CreateAccLast = ({navigation, route}) => {
                 width={270}
                 height={44}
               />
+              <CustomAlert showAlertPar={showAlert} />
             </View>
           </View>
         </View>
