@@ -29,7 +29,6 @@
 
 ## Screenshots
 
-<img src="./exchangeApp/src/utils/imgs/loginpageeng.png" alt="alt yazı" width="250" height="500"> &#160; <img src="./exchangeApp/src/utils/imgs/loginpage2eng.png" alt="alt yazı" width="250" height="500"> &#160; <img src="./exchangeApp/src/utils/imgs/mainpageeng.png" alt="alt yazı" width="250" height="500"> </br>
-
-
- <img src="./exchangeApp/src/utils/imgs/accountspageeng.png" alt="alt yazı" width="250" height="500"> &nbsp; <img src="./exchangeApp/src/utils/imgs/profilepageeng.png" alt="alt yazı" width="250" height="500"> &nbsp; <img src="./exchangeApp/src/utils/imgs/createacceng.png" alt="alt yazı" width="250" height="500"> &nbsp; <img src="./exchangeApp/src/utils/imgs/historypageeng.png" alt="alt yazı" width="250" height="500">
+<img src="./exchangeApp/src/utils/imgs/01.jpg" alt="alt yazı"> </br>
+<img src="./exchangeApp/src/utils/imgs/02.jpg" alt="alt yazı"> </br>
+<img src="./exchangeApp/src/utils/imgs/03.jpg" alt="alt yazı"> </br>
