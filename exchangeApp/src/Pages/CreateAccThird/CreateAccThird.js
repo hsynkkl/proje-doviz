@@ -17,6 +17,7 @@ const CreateAccLast = ({navigation, route}) => {
   const [departmentState, setDepartmentState] = useState();
   const userIdSelector = useSelector(s => s.userIdList);
   const userId = userIdSelector[0].userId.toString();
+  const alertValue = useSelector(s => s.alertValueList);
   const dispatch = useDispatch();
   const [showAlert, setShowAlert] = useState(false);
   const [hideAlert, setHideAlert] = useState(false);
@@ -25,6 +26,7 @@ const CreateAccLast = ({navigation, route}) => {
   let accType2 = [];
   let exchangeType2 = [];
   let department2;
+
   const setValues = async () => {
     const accTypesDatas = route.params.accTypeDatas;
     department2 = route.params.departmant;
@@ -38,12 +40,6 @@ const CreateAccLast = ({navigation, route}) => {
       setDepartmentState(route.params.departmant[1]);
     }
   };
-  // const hideAlert = () => {
-  //   setShowAlert(false);
-  // };
-  // const showAlertTrue = () => {
-  //   setShowAlert(true);
-  // };
   useEffect(() => {
     const accTypesDatas = route.params.accTypeDatas;
 
@@ -80,11 +76,11 @@ const CreateAccLast = ({navigation, route}) => {
       navigation.navigate('Anasayfa');
     } else if (value[1] === false) {
       if (value[0] === 1) {
-        setHideAlert(true);
+        setHideAlert(!hideAlert);
         setShowAlert(true);
         //alert(t.alertCreateAccUnSuccesfully2);
       } else {
-        setHideAlert(true);
+        setHideAlert(!hideAlert);
         setShowAlert(true);
 
         //alert(t.alertCreateAccUnsuccesfully);
@@ -165,7 +161,7 @@ const CreateAccLast = ({navigation, route}) => {
                 width={270}
                 height={44}
               />
-              <CustomAlert showAlertPar={showAlert} />
+              {hideAlert && <CustomAlert showAlertPar={showAlert} />}
             </View>
           </View>
         </View>

@@ -8,5 +8,5 @@ export default {
   photoUri: [],
   accTypesDatasList: [],
   itemIdList: [],
-  newFlatlistData: [],
+  alertValueList: [],
 };
