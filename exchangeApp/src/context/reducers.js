@@ -43,11 +43,11 @@ export default function (state, action) {
     case 'CLEAN_ITEMID':
       return {...state, itemIdList: []};
     case 'SET_FLATLISTDATA':
-      const value = action.payload;
-      const alertValue = [value];
-      return {...state, alertValueList: alertValue};
+      const datas = action.payload;
+      const flatlistData = [datas];
+      return {...state, newFlatlistData: flatlistData};
     case 'CLEAN_FLATLISTDATA':
-      return {...state, alertValueList: [false]};
+      return {...state, newFlatlistData: []};
     default:
       return state;
   }
