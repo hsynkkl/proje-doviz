@@ -10,6 +10,12 @@ import useTranslations from '../../Translation/useTranslations';
 import DatePicker from 'react-native-date-picker';
 
 import isTrueIdentify from '../../utils/Functions/otherFunctions/isTrueIdentify';
+import {
+  ALERT_TYPE,
+  Dialog,
+  AlertNotificationRoot,
+  Toast,
+} from 'react-native-alert-notification';
 const SignUpCon = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
   const [date, setDate] = useState(new Date());
@@ -25,79 +31,87 @@ const SignUpCon = ({navigation}) => {
         tckn: values.identifyNo,
       });
     } else {
-      alert(t.alertWrongTRIN);
+      Dialog.show({
+        type: ALERT_TYPE.DANGER,
+        title: t.error,
+        textBody: t.alertWrongTRIN,
+        button: t.close,
+      });
+      // alert(t.alertWrongTRIN);
     }
   }
   return (
-    <View style={styles.containerLinear}>
-      <LinearGradient
-        colors={['#FEB700', '#F30000']}
-        style={styles.linearGradient}>
-        <View style={styles.container}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>{t.titleSignUp}</Text>
-            <Line />
-          </View>
-        </View>
-        <Formik
-          initialValues={{name: '', surname: '', dobd: '', identifyNo: ''}}
-          onSubmit={handleLogin}>
-          {({handleSubmit, handleChange, values}) => (
-            <View>
-              <View style={styles.inputContainer}>
-                <Input
-                  value={values.name}
-                  onType={handleChange('name')}
-                  placeHolder={t.name}></Input>
-                <Input
-                  value={values.surname}
-                  onType={handleChange('surname')}
-                  placeHolder={t.surname}></Input>
-                <Input
-                  //value={valueDatePlaceHolder}
-                  onType={handleChange('dobd')}
-                  onPressIn={() => {
-                    setOpen(true);
-                  }}
-                  placeHolder={t.dateofBD}
-                  value={datePlaceHolder.substr(4, 11)}></Input>
-                <DatePicker
-                  modal
-                  mode="date"
-                  open={open}
-                  date={date}
-                  confirmText="Seç"
-                  cancelText="İptal"
-                  title={'Doğum Tarihi'}
-                  onConfirm={date => {
-                    setOpen(false);
-                    setDate(date);
-                    setDatePlaceHolder(date.toString());
-                  }}
-                  onCancel={() => {
-                    setOpen(false);
-                  }}
-                />
-                <Input
-                  value={values.identifyNo}
-                  onType={handleChange('identifyNo')}
-                  placeHolder={t.inputTCSignUp}
-                  keyboardType={'number-pad'}></Input>
-              </View>
-              <View style={styles.buttonContainer}>
-                <Button
-                  text={t.continue}
-                  width={100}
-                  colorButton={'#ffffff'}
-                  colorText={'#5A6CF3'}
-                  onPress={handleSubmit}
-                />
-              </View>
+    <AlertNotificationRoot>
+      <View style={styles.containerLinear}>
+        <LinearGradient
+          colors={['#FEB700', '#F30000']}
+          style={styles.linearGradient}>
+          <View style={styles.container}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.titleText}>{t.titleSignUp}</Text>
+              <Line />
             </View>
-          )}
-        </Formik>
-      </LinearGradient>
-    </View>
+          </View>
+          <Formik
+            initialValues={{name: '', surname: '', dobd: '', identifyNo: ''}}
+            onSubmit={handleLogin}>
+            {({handleSubmit, handleChange, values}) => (
+              <View>
+                <View style={styles.inputContainer}>
+                  <Input
+                    value={values.name}
+                    onType={handleChange('name')}
+                    placeHolder={t.name}></Input>
+                  <Input
+                    value={values.surname}
+                    onType={handleChange('surname')}
+                    placeHolder={t.surname}></Input>
+                  <Input
+                    //value={valueDatePlaceHolder}
+                    onType={handleChange('dobd')}
+                    onPressIn={() => {
+                      setOpen(true);
+                    }}
+                    placeHolder={t.dateofBD}
+                    value={datePlaceHolder.substr(4, 11)}></Input>
+                  <DatePicker
+                    modal
+                    mode="date"
+                    open={open}
+                    date={date}
+                    confirmText="Seç"
+                    cancelText="İptal"
+                    title={'Doğum Tarihi'}
+                    onConfirm={date => {
+                      setOpen(false);
+                      setDate(date);
+                      setDatePlaceHolder(date.toString());
+                    }}
+                    onCancel={() => {
+                      setOpen(false);
+                    }}
+                  />
+                  <Input
+                    value={values.identifyNo}
+                    onType={handleChange('identifyNo')}
+                    placeHolder={t.inputTCSignUp}
+                    keyboardType={'number-pad'}></Input>
+                </View>
+                <View style={styles.buttonContainer}>
+                  <Button
+                    text={t.continue}
+                    width={100}
+                    colorButton={'#ffffff'}
+                    colorText={'#5A6CF3'}
+                    onPress={handleSubmit}
+                  />
+                </View>
+              </View>
+            )}
+          </Formik>
+        </LinearGradient>
+      </View>
+    </AlertNotificationRoot>
   );
 };
 

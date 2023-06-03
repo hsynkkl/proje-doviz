@@ -8,6 +8,12 @@ import Input from '../../Components/TextInput';
 import useTranslations from '../../Translation/useTranslations';
 import {Formik} from 'formik';
 import setDataToDB from '../../utils/Functions/dbFunctions/usersDB/setDataToDB';
+import {
+  ALERT_TYPE,
+  Dialog,
+  AlertNotificationRoot,
+  Toast,
+} from 'react-native-alert-notification';
 const SignUpLast = ({navigation, route}) => {
   const {t, changeLanguage} = useTranslations();
 
@@ -17,64 +23,88 @@ const SignUpLast = ({navigation, route}) => {
     if (values.password == values.passwordConfirm) {
       deger = await setDataToDB(data, values);
       if (deger == true) {
-        navigation.navigate('LoginPage');
+        Dialog.show({
+          type: ALERT_TYPE.SUCCESS,
+          title: t.successfully,
+          textBody: t.alertSuccessCreateAcc,
+          button: t.close,
+          onHide: () => {
+            navigation.navigate('LoginPage');
+          },
+        });
       } else {
-        alert(t.alertUsingTRIN);
+        //alert(t.alertUsingTRIN);
+        Dialog.show({
+          type: ALERT_TYPE.DANGER,
+          title: t.error,
+          textBody: t.alertUsingTRIN,
+          button: t.close,
+        });
       }
     } else {
-      alert(t.alertSamePassword);
+      Dialog.show({
+        type: ALERT_TYPE.DANGER,
+        title: t.error,
+        textBody: t.alertSamePassword,
+        button: t.close,
+      });
+      //alert(t.alertSamePassword);
     }
   };
-  const deneme = () => {
-    console.log(data.photoUri);
-  };
+
   return (
-    <View style={styles.containerLinear}>
-      <LinearGradient
-        colors={['#FEB700', '#F30000']}
-        style={styles.linearGradient}>
-        <View style={styles.container}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>{t.titleSignUp}</Text>
-            <Line />
+    <AlertNotificationRoot>
+      <View style={styles.containerLinear}>
+        <LinearGradient
+          colors={['#FEB700', '#F30000']}
+          style={styles.linearGradient}>
+          <View style={styles.container}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.titleText}>{t.titleSignUp}</Text>
+              <Line />
+            </View>
+            <Formik
+              initialValues={{
+                phoneNumber: '',
+                password: '',
+                passwordConfirm: '',
+              }}
+              onSubmit={handleForSubmit}>
+              {({handleSubmit, handleChange, values}) => (
+                <View>
+                  <View style={styles.inputContainer}>
+                    <Input
+                      value={values.phoneNumber}
+                      onType={handleChange('phoneNumber')}
+                      placeHolder={t.phoneNumber}
+                      keyboardType={'number-pad'}></Input>
+                    <Input
+                      value={values.password}
+                      onType={handleChange('password')}
+                      placeHolder={t.password}
+                      secureTextEntry={true}></Input>
+                    <Input
+                      value={values.passwordConfirm}
+                      onType={handleChange('passwordConfirm')}
+                      placeHolder={t.passwordConfirm}
+                      secureTextEntry={true}></Input>
+                  </View>
+                  <View style={styles.buttonContainer}>
+                    <Button
+                      text={t.confirm}
+                      width={100}
+                      colorButton={'#ffffff'}
+                      colorText={'#5A6CF3'}
+                      onPress={handleSubmit}
+                    />
+                  </View>
+                </View>
+              )}
+            </Formik>
           </View>
-          <Formik
-            initialValues={{phoneNumber: '', password: '', passwordConfirm: ''}}
-            onSubmit={handleForSubmit}>
-            {({handleSubmit, handleChange, values}) => (
-              <View>
-                <View style={styles.inputContainer}>
-                  <Input
-                    value={values.phoneNumber}
-                    onType={handleChange('phoneNumber')}
-                    placeHolder={t.phoneNumber}
-                    keyboardType={'number-pad'}></Input>
-                  <Input
-                    value={values.password}
-                    onType={handleChange('password')}
-                    placeHolder={t.password}
-                    secureTextEntry={true}></Input>
-                  <Input
-                    value={values.passwordConfirm}
-                    onType={handleChange('passwordConfirm')}
-                    placeHolder={t.passwordConfirm}
-                    secureTextEntry={true}></Input>
-                </View>
-                <View style={styles.buttonContainer}>
-                  <Button
-                    text={t.confirm}
-                    width={100}
-                    colorButton={'#ffffff'}
-                    colorText={'#5A6CF3'}
-                    onPress={handleSubmit}
-                  />
-                </View>
-              </View>
-            )}
-          </Formik>
-        </View>
-      </LinearGradient>
-    </View>
+        </LinearGradient>
+      </View>
+    </AlertNotificationRoot>
   );
 };
 export default SignUpLast;

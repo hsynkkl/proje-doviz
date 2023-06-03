@@ -21,6 +21,7 @@
     "formik": "^2.2.9",
     "react": "18.1.0",
     "react-native": "0.70.6",
+    "react-native-alert-notification": "^0.3.4",
     "react-native-awesome-alerts": "^2.0.0",
     "react-native-circular-chart": "^1.0.9",
     "react-native-date-picker": "^4.2.13",

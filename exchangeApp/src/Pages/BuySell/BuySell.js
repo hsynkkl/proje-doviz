@@ -18,7 +18,12 @@ import useTranslations from '../../Translation/useTranslations';
 import RenderBuySellItem from '../../Components/RenderBuySellItem';
 import {useDispatch} from 'react-redux';
 import AmountInput from '../../Components/AmountInput/AmountInput';
-
+import {
+  ALERT_TYPE,
+  Dialog,
+  AlertNotificationRoot,
+  Toast,
+} from 'react-native-alert-notification';
 const BuySell = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
   const [loading, setLoading] = useState(true);
@@ -83,7 +88,13 @@ const BuySell = ({navigation}) => {
         resetSuccesfully();
       }
     } else {
-      alert(t.alertUnSuccesfullyTansfer);
+      Dialog.show({
+        type: ALERT_TYPE.DANGER,
+        title: t.error,
+        textBody: t.alertUnSuccesfullyTansfer,
+        button: t.close,
+      });
+      //alert(t.alertUnSuccesfullyTansfer);
       resetUnSuccesfully();
     }
   };
@@ -100,7 +111,13 @@ const BuySell = ({navigation}) => {
     setButtonTitleUnder(t.list);
     const accs = await getAccounts(userIdStr);
     dispatch({type: 'SET_FLATLISTDATA', payload: {datas: accs}});
-    alert(t.alertSuccesfullyTansfer);
+    Dialog.show({
+      type: ALERT_TYPE.SUCCESS,
+      title: t.successfully,
+      textBody: t.alertSuccesfullyTansfer,
+      button: t.close,
+    });
+    //alert(t.alertSuccesfullyTansfer);
   };
   const resetUnSuccesfully = () => {
     setSelectedUpperId();
@@ -183,136 +200,140 @@ const BuySell = ({navigation}) => {
     }
   };
   return (
-    <View style={styles.containerLinear}>
-      <LinearGradient
-        colors={['#141414', '#FEB700']}
-        style={styles.linearGradient}>
-        <View style={styles.upperContainer}>
-          <View style={styles.topExchangeContainer}>
-            <Text style={styles.itemTitle}>{t.currencySoldUpperCase}</Text>
-            <View style={styles.flatListContainer}>
-              <View style={styles.innerLeftContainer}>
-                <View style={styles.topExchangeImage}></View>
-                <View style={styles.itemInnerContainer}>
-                  <Text style={styles.itemShortTitle}>
-                    {buyingItemShortTitle}
-                  </Text>
-                  <Text style={styles.innerItemTitle}>
-                    {buyingItemLongTitle}
-                  </Text>
+    <AlertNotificationRoot>
+      <View style={styles.containerLinear}>
+        <LinearGradient
+          colors={['#141414', '#FEB700']}
+          style={styles.linearGradient}>
+          <View style={styles.upperContainer}>
+            <View style={styles.topExchangeContainer}>
+              <Text style={styles.itemTitle}>{t.currencySoldUpperCase}</Text>
+              <View style={styles.flatListContainer}>
+                <View style={styles.innerLeftContainer}>
+                  <View style={styles.topExchangeImage}></View>
+                  <View style={styles.itemInnerContainer}>
+                    <Text style={styles.itemShortTitle}>
+                      {buyingItemShortTitle}
+                    </Text>
+                    <Text style={styles.innerItemTitle}>
+                      {buyingItemLongTitle}
+                    </Text>
+                  </View>
                 </View>
-              </View>
-              <View style={styles.textUpperPriceContainer}>
-                <View style={styles.inputContainer}>
-                  {/* <Input
+                <View style={styles.textUpperPriceContainer}>
+                  <View style={styles.inputContainer}>
+                    {/* <Input
                     keyboardType={'number-pad'}
                     placeHolder={''}
                     backgroundColor={'rgba(255, 255, 255, 0.051)'}
                     width={50}
                     onType={setInputAmount}></Input> */}
-                  <AmountInput onSearch={handleSearch} />
+                    <AmountInput onSearch={handleSearch} />
+                  </View>
                 </View>
-              </View>
-            </View>
-          </View>
-          <Line
-            paddingTop={'-5%'}
-            paddingLeft={'9%'}
-            paddingRight={'9%'}></Line>
-          <View style={styles.bottomExchangeContainer}>
-            <Text style={styles.itemTitle}>{t.currencyReceivedUpperCase}</Text>
-            <View style={styles.flatListContainer}>
-              <View style={styles.innerLeftContainer}>
-                <View style={styles.topExchangeImage}></View>
-                <View style={styles.itemInnerContainer}>
-                  <Text style={styles.itemShortTitle}>
-                    {sellingItemShortTitle}
-                  </Text>
-                  <Text style={styles.innerItemTitle}>
-                    {sellingItemLongTitle}
-                  </Text>
-                </View>
-              </View>
-              <View style={styles.textUnderPriceContainer}>
-                <Text style={styles.textPrice}>{priceBuying}</Text>
-              </View>
-            </View>
-          </View>
-        </View>
-        <View style={styles.underContainer}>
-          <View style={styles.selectBoxContainer}>
-            <Text style={styles.underContainerUpperText}>
-              {t.sellingAccount}
-            </Text>
-            <View style={styles.selectListUpper}>
-              <View style={styles.innerSelectListContainer}>
-                <View style={styles.flatListContainer}>
-                  {showTheThingUpper && (
-                    <FlatList
-                      data={flatListData}
-                      renderItem={renderItemUpper}
-                      keyExtractor={item => item.id}
-                      extraData={selectedUpperId}
-                    />
-                  )}
-                </View>
-                <Button
-                  text={buttonTitleUpper}
-                  width={270}
-                  height={22}
-                  onPress={handleOpenUpper}
-                  colorText={'#ffffff'}
-                  borderRadius={14}
-                  colorButton={'rgba(235, 87, 87, 0.2)'}
-                />
               </View>
             </View>
             <Line
               paddingTop={'-5%'}
-              paddingLeft={'0%'}
-              paddingRight={'0%'}></Line>
-
-            <View style={styles.selectListUnder}>
-              <Text style={styles.underContainerUnderText}>
-                {t.buyingAccount}
+              paddingLeft={'9%'}
+              paddingRight={'9%'}></Line>
+            <View style={styles.bottomExchangeContainer}>
+              <Text style={styles.itemTitle}>
+                {t.currencyReceivedUpperCase}
               </Text>
-              <View style={styles.innerSelectListContainer}>
-                <View style={styles.flatListContainer}>
-                  {showTheThingUnder && (
-                    <FlatList
-                      data={flatListData}
-                      renderItem={renderItemUnder}
-                      keyExtractor={item => item.id}
-                      extraData={selectedUnderId}
-                    />
-                  )}
+              <View style={styles.flatListContainer}>
+                <View style={styles.innerLeftContainer}>
+                  <View style={styles.topExchangeImage}></View>
+                  <View style={styles.itemInnerContainer}>
+                    <Text style={styles.itemShortTitle}>
+                      {sellingItemShortTitle}
+                    </Text>
+                    <Text style={styles.innerItemTitle}>
+                      {sellingItemLongTitle}
+                    </Text>
+                  </View>
                 </View>
-                <Button
-                  text={buttonTitleUnder}
-                  width={270}
-                  height={22}
-                  onPress={handleOpenUnder}
-                  colorText={'#ffffff'}
-                  borderRadius={14}
-                  colorButton={'rgba(235, 87, 87, 0.2)'}
-                />
+                <View style={styles.textUnderPriceContainer}>
+                  <Text style={styles.textPrice}>{priceBuying}</Text>
+                </View>
               </View>
             </View>
           </View>
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            text={t.confirm}
-            borderRadius={14}
-            onPress={handleSubmit}
-            colorText={'#ffffff'}
-            colorButton={'rgba(235, 87, 87, 0.75)'}
-            width={270}
-            height={44}
-          />
-        </View>
-      </LinearGradient>
-    </View>
+          <View style={styles.underContainer}>
+            <View style={styles.selectBoxContainer}>
+              <Text style={styles.underContainerUpperText}>
+                {t.sellingAccount}
+              </Text>
+              <View style={styles.selectListUpper}>
+                <View style={styles.innerSelectListContainer}>
+                  <View style={styles.flatListContainer}>
+                    {showTheThingUpper && (
+                      <FlatList
+                        data={flatListData}
+                        renderItem={renderItemUpper}
+                        keyExtractor={item => item.id}
+                        extraData={selectedUpperId}
+                      />
+                    )}
+                  </View>
+                  <Button
+                    text={buttonTitleUpper}
+                    width={270}
+                    height={22}
+                    onPress={handleOpenUpper}
+                    colorText={'#ffffff'}
+                    borderRadius={14}
+                    colorButton={'rgba(235, 87, 87, 0.2)'}
+                  />
+                </View>
+              </View>
+              <Line
+                paddingTop={'-5%'}
+                paddingLeft={'0%'}
+                paddingRight={'0%'}></Line>
+
+              <View style={styles.selectListUnder}>
+                <Text style={styles.underContainerUnderText}>
+                  {t.buyingAccount}
+                </Text>
+                <View style={styles.innerSelectListContainer}>
+                  <View style={styles.flatListContainer}>
+                    {showTheThingUnder && (
+                      <FlatList
+                        data={flatListData}
+                        renderItem={renderItemUnder}
+                        keyExtractor={item => item.id}
+                        extraData={selectedUnderId}
+                      />
+                    )}
+                  </View>
+                  <Button
+                    text={buttonTitleUnder}
+                    width={270}
+                    height={22}
+                    onPress={handleOpenUnder}
+                    colorText={'#ffffff'}
+                    borderRadius={14}
+                    colorButton={'rgba(235, 87, 87, 0.2)'}
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button
+              text={t.confirm}
+              borderRadius={14}
+              onPress={handleSubmit}
+              colorText={'#ffffff'}
+              colorButton={'rgba(235, 87, 87, 0.75)'}
+              width={270}
+              height={44}
+            />
+          </View>
+        </LinearGradient>
+      </View>
+    </AlertNotificationRoot>
   );
 };
 export default BuySell;
