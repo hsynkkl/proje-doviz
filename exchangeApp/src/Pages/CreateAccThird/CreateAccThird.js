@@ -18,8 +18,18 @@ const CreateAccLast = ({navigation, route}) => {
   const userIdSelector = useSelector(s => s.userIdList);
   const userId = userIdSelector[0].userId.toString();
   const alertValue = useSelector(s => s.alertValueList);
+  const [alertValueState, setAlertValueState] = useState(false);
+  useEffect(() => {
+    let value = alertValue.value;
+    setAlertValueState(value);
+    if (value === true) {
+      setHideAlert(true);
+    } else {
+      setHideAlert(false);
+    }
+  }, [alertValue]);
   const dispatch = useDispatch();
-  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState();
   const [hideAlert, setHideAlert] = useState(false);
   let accType = [];
   let exchangeType = [];
@@ -67,21 +77,25 @@ const CreateAccLast = ({navigation, route}) => {
       iban,
     );
     if (value[1] === true) {
+      dispatch({type: 'SET_ALERTVALUE', payload: {value: true}});
+
       const accs = await acc(userId);
 
       dispatch({type: 'SET_FLATLISTDATA', payload: {datas: accs}});
-
-      alert(t.alertCreateAccSuccesfully);
+      setAlertMessage(t.alertCreateAccSuccesfully);
+      // alert(t.alertCreateAccSuccesfully);
       navigation.navigate('CreateAccPage');
       navigation.navigate('Anasayfa');
     } else if (value[1] === false) {
+      dispatch({type: 'SET_ALERTVALUE', payload: {value: true}});
+
       if (value[0] === 1) {
-        setHideAlert(!hideAlert);
-        setShowAlert(true);
+        //setHideAlert(!hideAlert);
+        setAlertMessage(t.alertCreateAccUnSuccesfully2);
         //alert(t.alertCreateAccUnSuccesfully2);
       } else {
-        setHideAlert(!hideAlert);
-        setShowAlert(true);
+        //setHideAlert(!hideAlert);
+        setAlertMessage(t.alertCreateAccUnsuccesfully);
 
         //alert(t.alertCreateAccUnsuccesfully);
       }
@@ -161,7 +175,13 @@ const CreateAccLast = ({navigation, route}) => {
                 width={270}
                 height={44}
               />
-              {hideAlert && <CustomAlert showAlertPar={showAlert} />}
+              {hideAlert && (
+                <CustomAlert
+                  type={false}
+                  message={alertMessage}
+                  title={t.alertTitle}
+                />
+              )}
             </View>
           </View>
         </View>

@@ -79,6 +79,7 @@ export default {
     hide: 'Gizle',
     empty: 'Yapılmış işlem bulunmamaktadır.',
     iban: 'IBAN: ',
+    alertTitle: 'HATA',
   },
   eng: {
     welcome: 'Welcome.',
@@ -160,6 +161,7 @@ export default {
     hide: 'Hide',
     empty: 'There are no transactions made.',
     iban: 'IBAN: ',
+    alertTitle: 'ERROR',
   },
   pl: {
     welcome: 'Powitanie.',
@@ -238,6 +240,7 @@ export default {
     hide: 'Ukrywać',
     empty: 'Nie zawiera żadnych transakcji.',
     iban: 'IBAN: ',
+    alertTitle: 'błąd',
   },
   '': {
     welcome: 'Hoş Geldiniz.',

@@ -1,19 +1,20 @@
 import React, {useState} from 'react';
-import {View, Image, ImageBackground} from 'react-native';
+import {View} from 'react-native';
 import styles from './CustomAlert.style';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import {useDispatch} from 'react-redux';
 import {useSelector} from 'react-redux';
-const CustomAlert = ({showAlertPar}) => {
+const CustomAlert = ({type, message, title}) => {
   const [showAlert, setShowAlert] = useState(true);
   const dispatch = useDispatch();
+  const alertValue = useSelector(s => s.alertValueList);
 
   const showAlertTrue = () => {
-    setShowAlert(showAlertPar);
+    //setShowAlert(showAlertPar);
   };
   const hideAlert = () => {
-    dispatch({type: 'SET_ALERT', payload: {value: false}});
-
+    dispatch({type: 'SET_ALERTVALUE', payload: {value: false}});
+    //console.log(alertValue);
     setShowAlert(false);
   };
   return (
@@ -21,20 +22,24 @@ const CustomAlert = ({showAlertPar}) => {
       <AwesomeAlert
         show={showAlert}
         showProgress={false}
-        title="AwesomeAlert"
-        message="I have a message for you!"
+        title={title}
+        message={message}
         closeOnTouchOutside={true}
         closeOnHardwareBackPress={false}
-        showCancelButton={true}
+        showCancelButton={type}
         showConfirmButton={true}
         cancelText="No, cancel"
-        confirmText="Yes, delete it"
+        confirmText="OK"
         confirmButtonColor="#DD6B55"
+        confirmButtonStyle={styles.button}
+        confirmButtonTextStyle={styles.buttonText}
         onCancelPressed={() => {
           hideAlert();
           console.log('canceled');
         }}
         onConfirmPressed={() => {
+          //console.log('confirmed');
+
           hideAlert();
         }}
       />
