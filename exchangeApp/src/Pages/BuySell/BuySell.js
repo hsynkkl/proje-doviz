@@ -60,8 +60,6 @@ const BuySell = ({navigation}) => {
   }, []);
   const handleSubmit = async () => {
     await handleSearch();
-    // calculatedRates = 12;
-    console.log(priceBuying);
     const isTrue = await transferingMoney(
       userId,
       inputAmount,
