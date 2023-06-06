@@ -11,7 +11,7 @@ export default function transferingMoney(userId, amount, accountTypeSelling) {
       const db = openDatabase({
         name: 'rn_sqlite',
       });
-
+      let value = false;
       db.transaction(txn => {
         txn.executeSql(
           `SELECT * FROM userAccounts`,
@@ -23,9 +23,11 @@ export default function transferingMoney(userId, amount, accountTypeSelling) {
               if (userIdStr === item.userId) {
                 if (item.currencyTypeText.includes(accountTypeSelling)) {
                   const balanceFloat = parseFloat(item.balance);
+                  console.log(balanceFloat - amountFloat);
                   if (amountFloat > balanceFloat) {
-                    resolve(false);
+                    value = false;
                   } else {
+                    value = true;
                     const accountTypeSellingLowerCase =
                       accountTypeSelling.toLowerCase();
 
@@ -50,8 +52,8 @@ export default function transferingMoney(userId, amount, accountTypeSelling) {
                   }
                 }
               }
-              resolve(true);
             }
+            resolve(value);
           },
           err => {
             console.log(err.message);

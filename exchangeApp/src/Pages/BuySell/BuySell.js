@@ -8,7 +8,6 @@ import Button from '../../Components/Button';
 import {socket} from '../../Router';
 import getAccounts from '../../utils/Functions/dbFunctions/userAccountsDB/getAccFromDB';
 import currencyTypeTextSplit from '../../utils/Functions/otherFunctions/currencyTypeTextSplit';
-import Input from '../../Components/TextInput/Input';
 import {useSelector} from 'react-redux';
 import calculateRates from '../../utils/Functions/otherFunctions/calculateRates';
 import processHistory from '../../utils/Functions/dbFunctions/processHistoryDB/processHistory';
@@ -81,14 +80,15 @@ const BuySell = ({navigation}) => {
     if (value === true) {
       Dialog.show({
         type: ALERT_TYPE.WARNING,
-        title: 'ONAY',
-        textBody: `${buyingItemShortTitle} hesabınızdan ${sellingItemShortTitle} hesabınıza  ${inputAmount} ${buyingItemShortTitle} tutarındaki işlemi onaylıyor musunuz
-        Güncel kur : ${deneme}.
-        Onaylamak için 5 saniye vaktiniz var.`,
-        button: 'ONAYLA',
+        title: t.alertInfoConfirm,
+        textBody: `"${buyingItemShortTitle}" ${t.alertInfoFirst} "${sellingItemShortTitle}" ${t.alertInfoSecond}  "${inputAmount}" ${buyingItemShortTitle} ${t.alertInfoLast}
+        ${t.alertInfoRate} ${deneme}.
+        ${t.alertInfoTime}`,
+        button: t.alertInfoButton,
         onPressButton: () => {
           processing();
         },
+        autoClose: 5000,
       });
     } else {
       Dialog.show({
@@ -96,6 +96,7 @@ const BuySell = ({navigation}) => {
         title: 'eksik bilgi',
         textBody: 'gerekli değerleri giriniz',
         button: 'kapat',
+
         onPressButton: () => {
           resetUnSuccesfully();
           Dialog.hide();
@@ -137,7 +138,6 @@ const BuySell = ({navigation}) => {
           textBody: t.alertUnSuccesfullyTansfer,
           button: t.close,
         });
-        //alert(t.alertUnSuccesfullyTansfer);
         resetUnSuccesfully();
       }
     };

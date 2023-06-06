@@ -89,7 +89,7 @@ const Main = ({navigation}) => {
                         radius={90}
                         containerWidth={width - PADDING * 2}
                         containerHeight={105 * 2}
-                        type="round"
+                        type="fade"
                         startAngle={0}
                         endAngle={360}
                         animationType="slide"
