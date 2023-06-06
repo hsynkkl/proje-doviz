@@ -17,6 +17,7 @@ import incomingMoney from '../../utils/Functions/dbFunctions/userAccountsDB/inco
 import useTranslations from '../../Translation/useTranslations';
 import RenderBuySellItem from '../../Components/RenderBuySellItem';
 import {useDispatch} from 'react-redux';
+import calculateRatesForAlert from '../../utils/Functions/otherFunctions/calculateRatesForAlert';
 import AmountInput from '../../Components/AmountInput/AmountInput';
 import {
   ALERT_TYPE,
@@ -48,6 +49,7 @@ const BuySell = ({navigation}) => {
     useState('');
   const [selectedUnderCurrencyTypeText, setSelectedUnderCurrencyTypeText] =
     useState('');
+
   useEffect(() => {
     socket.on('exchange', data => {
       setRatesList(data);
@@ -58,43 +60,87 @@ const BuySell = ({navigation}) => {
       fetchData();
     });
   }, []);
+  const check = async () => {
+    var value = false;
+    if (
+      buyingItemShortTitle &&
+      sellingItemShortTitle &&
+      inputAmount !== undefined
+    ) {
+      value = true;
+    }
+    return value;
+  };
   const handleSubmit = async () => {
-    await handleSearch();
-    const isTrue = await transferingMoney(
-      userId,
-      inputAmount,
+    const deneme = await calculateRatesForAlert(
+      ratesList,
       buyingItemShortTitle,
+      sellingItemShortTitle,
     );
-    if (isTrue == true) {
-      const isTrue2 = await incomingMoney(
-        userId,
-        priceBuying,
-        sellingItemShortTitle,
-      );
-      const dateTime = await getDate();
-      if (isTrue === true && isTrue2 === true) {
-        await processHistory(
-          userId,
-          dateTime,
-          inputAmount,
-          ratesList,
-          selectedUpperId,
-          selectedUnderId,
-          buyingItemShortTitle,
-          sellingItemShortTitle,
-        );
-        resetSuccesfully();
-      }
+    const value = await check();
+    if (value === true) {
+      Dialog.show({
+        type: ALERT_TYPE.WARNING,
+        title: 'ONAY',
+        textBody: `${buyingItemShortTitle} hesabınızdan ${sellingItemShortTitle} hesabınıza  ${inputAmount} ${buyingItemShortTitle} tutarındaki işlemi onaylıyor musunuz
+        Güncel kur : ${deneme}.
+        Onaylamak için 5 saniye vaktiniz var.`,
+        button: 'ONAYLA',
+        onPressButton: () => {
+          processing();
+        },
+      });
     } else {
       Dialog.show({
         type: ALERT_TYPE.DANGER,
-        title: t.error,
-        textBody: t.alertUnSuccesfullyTansfer,
-        button: t.close,
+        title: 'eksik bilgi',
+        textBody: 'gerekli değerleri giriniz',
+        button: 'kapat',
+        onPressButton: () => {
+          resetUnSuccesfully();
+          Dialog.hide();
+        },
       });
-      //alert(t.alertUnSuccesfullyTansfer);
-      resetUnSuccesfully();
     }
+
+    const processing = async () => {
+      await handleSearch();
+      const isTrue = await transferingMoney(
+        userId,
+        inputAmount,
+        buyingItemShortTitle,
+      );
+      if (isTrue == true) {
+        const isTrue2 = await incomingMoney(
+          userId,
+          priceBuying,
+          sellingItemShortTitle,
+        );
+        const dateTime = await getDate();
+        if (isTrue === true && isTrue2 === true) {
+          await processHistory(
+            userId,
+            dateTime,
+            inputAmount,
+            ratesList,
+            selectedUpperId,
+            selectedUnderId,
+            buyingItemShortTitle,
+            sellingItemShortTitle,
+          );
+          resetSuccesfully();
+        }
+      } else {
+        Dialog.show({
+          type: ALERT_TYPE.DANGER,
+          title: t.error,
+          textBody: t.alertUnSuccesfullyTansfer,
+          button: t.close,
+        });
+        //alert(t.alertUnSuccesfullyTansfer);
+        resetUnSuccesfully();
+      }
+    };
   };
   const resetSuccesfully = async () => {
     setSelectedUpperId();
