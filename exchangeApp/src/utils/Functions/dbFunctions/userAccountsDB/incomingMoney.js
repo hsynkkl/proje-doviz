@@ -43,22 +43,5 @@ export default function incomingMoney(userId, amount, accountType) {
       );
     });
     resolve(true);
-    // db.transaction(txn => {
-    //   txn.executeSql(
-    //     `SELECT * FROM userAccounts`,
-    //     [],
-    //     (sqlTxn, res) => {
-    //       let len = res.rows.length;
-
-    //       for (let i = 0; i < len; i++) {
-    //         let item = res.rows.item(i);
-    //         console.log(item);
-    //       }
-    //     },
-    //     err => {
-    //       console.log(err.message);
-    //     },
-    //   );
-    // });
   });
 }

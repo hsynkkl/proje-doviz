@@ -12,7 +12,6 @@ export default function processHistory(
 ) {
   return new Promise(resolve => {
     if (!amountSold || !sellingAccountTitle || !buyingAccounttitle) {
-      //alert('işlem başarısız');
       resolve(false);
     } else {
       const userIdStr = userId[0].userId;

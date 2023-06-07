@@ -90,6 +90,9 @@ export default {
     alertInfoSecond: 'hesabınıza',
     alertInfoConfirm: 'ONAY',
     alertInfoButton: 'ONAYLA',
+    alertToastIncomingMoney: 'hesabınıza para geldi :)',
+    alertInfoWarningTitle: 'Eksik Bilgi',
+    alertInfoWarningText: 'Gerekli bilgileri giriniz.',
   },
   eng: {
     welcome: 'Welcome.',
@@ -182,6 +185,9 @@ export default {
     alertInfoSecond: ' to',
     alertInfoConfirm: 'APPROVE',
     alertInfoButton: 'APPROVE',
+    alertToastIncomingMoney: 'money in your account :)',
+    alertInfoWarningTitle: 'Missing Information',
+    alertInfoWarningText: 'Enter the required information.',
   },
   pl: {
     welcome: 'Powitanie.',
@@ -271,6 +277,9 @@ export default {
     alertInfoSecond: 'do',
     alertInfoConfirm: 'ZATWIERDZIĆ',
     alertInfoButton: 'ZATWIERDZIĆ',
+    alertToastIncomingMoney: 'przychodzące pieniądze :)',
+    alertInfoWarningTitle: 'Brakująca Informacja',
+    alertInfoWarningText: 'Wprowadź wymagane informacje.',
   },
   '': {
     welcome: 'Hoş Geldiniz.',

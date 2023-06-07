@@ -29,7 +29,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
-export const socket = io('http://176.16.235.34:3000');
+export const socket = io('http://176.16.234.152:3000');
 socket.on('connect', () => {
   console.log('socket connected');
 });

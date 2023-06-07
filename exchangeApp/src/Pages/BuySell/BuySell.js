@@ -71,7 +71,7 @@ const BuySell = ({navigation}) => {
     return value;
   };
   const handleSubmit = async () => {
-    const deneme = await calculateRatesForAlert(
+    const rate = await calculateRatesForAlert(
       ratesList,
       buyingItemShortTitle,
       sellingItemShortTitle,
@@ -82,7 +82,7 @@ const BuySell = ({navigation}) => {
         type: ALERT_TYPE.WARNING,
         title: t.alertInfoConfirm,
         textBody: `"${buyingItemShortTitle}" ${t.alertInfoFirst} "${sellingItemShortTitle}" ${t.alertInfoSecond}  "${inputAmount}" ${buyingItemShortTitle} ${t.alertInfoLast}
-        ${t.alertInfoRate} ${deneme}.
+        ${t.alertInfoRate} ${rate}.
         ${t.alertInfoTime}`,
         button: t.alertInfoButton,
         onPressButton: () => {
@@ -93,9 +93,9 @@ const BuySell = ({navigation}) => {
     } else {
       Dialog.show({
         type: ALERT_TYPE.DANGER,
-        title: 'eksik bilgi',
-        textBody: 'gerekli değerleri giriniz',
-        button: 'kapat',
+        title: t.alertInfoWarningTitle,
+        textBody: t.alertInfoWarningText,
+        button: t.close,
 
         onPressButton: () => {
           resetUnSuccesfully();
@@ -160,6 +160,13 @@ const BuySell = ({navigation}) => {
       title: t.successfully,
       textBody: t.alertSuccesfullyTansfer,
       button: t.close,
+      onHide: () => {
+        Toast.show({
+          type: ALERT_TYPE.SUCCESS,
+          title: 'GELEN PARA',
+          textBody: `${sellingItemShortTitle} ${t.alertToastIncomingMoney}`,
+        });
+      },
     });
     //alert(t.alertSuccesfullyTansfer);
   };
