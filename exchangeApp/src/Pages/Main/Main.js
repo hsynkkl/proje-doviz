@@ -15,13 +15,7 @@ import Item from '../../Components/MainItem';
 import useTranslations from '../../Translation/useTranslations';
 import TitleOfPage from '../../Components/TitleOfPages';
 import OpenDrawerButton from '../../Components/OpenDrawerButton';
-import Button from '../../Components/Button';
-import {
-  ALERT_TYPE,
-  Dialog,
-  AlertNotificationRoot,
-  Toast,
-} from 'react-native-alert-notification';
+
 const Main = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
 
@@ -49,7 +43,6 @@ const Main = ({navigation}) => {
       }
       setLoading(true);
     };
-
     show();
   }, [accs]);
   if (loading === false) {
@@ -58,77 +51,61 @@ const Main = ({navigation}) => {
   const openMenu = async () => {
     navigation.openDrawer();
   };
-
   return (
-    <AlertNotificationRoot>
-      <View style={styles.containerLinear}>
-        <LinearGradient
-          colors={['#FEB700', '#F30000']}
-          style={styles.linearGradient}>
-          <View style={styles.container}>
-            <View style={styles.logoContainer}>
-              <Image
-                style={styles.logo}
-                source={require('../../utils/imgs/logo.png')}
-              />
-            </View>
+    <View style={styles.containerLinear}>
+      <LinearGradient
+        colors={['#FEB700', '#F30000']}
+        style={styles.linearGradient}>
+        <View style={styles.container}>
+          <View style={styles.logoContainer}>
+            <Image
+              style={styles.logo}
+              source={require('../../utils/imgs/logo.png')}
+            />
+          </View>
 
-            <View>
-              <View style={{alignItems: 'center'}}>
-                <TitleOfPage title={t.assets}></TitleOfPage>
-              </View>
+          <View>
+            <View style={{alignItems: 'center'}}>
+              <TitleOfPage title={t.assets}></TitleOfPage>
             </View>
+          </View>
+          <View>
             <View>
-              <View>
-                {hide && (
-                  <View>
-                    <View style={styles.centerContainer}>
-                      <DonutChart
-                        data={donutChartData}
-                        strokeWidth={15}
-                        radius={90}
-                        containerWidth={width - PADDING * 2}
-                        containerHeight={105 * 2}
-                        type="fade"
-                        startAngle={0}
-                        endAngle={360}
-                        animationType="slide"
-                      />
-                    </View>
-                    <View style={styles.underContainer}>
-                      <View style={styles.underInnerContainer}>
-                        <FlatList
-                          data={flatListData}
-                          renderItem={Item}
-                          keyExtractor={item => item.id}
-                          horizontal
-                        />
-                      </View>
-                    </View>
-                    {/* <View style={{height: 100, backgroundColor: 'gray'}}>
-                      <Button
-                        text={'dialog box'}
-                        onPress={() =>
-                          Dialog.show({
-                            type: ALERT_TYPE.SUCCESS,
-                            title: 'Success',
-                            textBody: 'Congrats! this is dialog box success',
-                            button: 'close',
-                          })
-                        }
-                      />
-                    </View> */}
+              {hide && (
+                <View>
+                  <View style={styles.centerContainer}>
+                    <DonutChart
+                      data={donutChartData}
+                      strokeWidth={15}
+                      radius={90}
+                      containerWidth={width - PADDING * 2}
+                      containerHeight={105 * 2}
+                      type="fade"
+                      startAngle={0}
+                      endAngle={360}
+                      animationType="slide"
+                    />
                   </View>
-                )}
-                <View style={styles.menuButtonContainer}>
-                  <OpenDrawerButton onPress={openMenu}></OpenDrawerButton>
+                  <View style={styles.underContainer}>
+                    <View style={styles.underInnerContainer}>
+                      <FlatList
+                        data={flatListData}
+                        renderItem={Item}
+                        keyExtractor={item => item.id}
+                        horizontal
+                      />
+                    </View>
+                  </View>
                 </View>
+              )}
+              <View style={styles.menuButtonContainer}>
+                <OpenDrawerButton onPress={openMenu}></OpenDrawerButton>
               </View>
             </View>
           </View>
-        </LinearGradient>
-      </View>
-    </AlertNotificationRoot>
+        </View>
+      </LinearGradient>
+    </View>
   );
 };
 export default Main;

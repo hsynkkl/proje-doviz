@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import styles from './Profile.style';
 import LinearGradient from 'react-native-linear-gradient';
 import getDataFromDB from '../../utils/Functions/dbFunctions/usersDB/getDataFromDB';
 import {useSelector} from 'react-redux';
 import useTranslations from '../../Translation/useTranslations';
 import LanguageCard from '../../Components/LanguageCard/LanguageCard';
-import TitleOfPage from '../../Components/TitleOfPages';
+import Lock from 'react-native-vector-icons/EvilIcons';
 
-import AwesomeAlert from 'react-native-awesome-alerts';
 const Profile = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
   const [showLanguageCard, setShowLanguageCard] = useState(false);
@@ -16,7 +15,6 @@ const Profile = ({navigation}) => {
   const [phoneNumber, setPhoneNumber] = useState();
   const [photo, setPhoto] = useState();
   const userId = useSelector(s => s.userIdList);
-  const [showAlert, setShowAlert] = useState(false);
   var datas = [];
 
   useEffect(() => {
@@ -28,12 +26,7 @@ const Profile = ({navigation}) => {
     }
     fetchData();
   }, []);
-  const showAlertTrue = () => {
-    setShowAlert(true);
-  };
-  const hideAlert = () => {
-    setShowAlert(false);
-  };
+
   const editLanguage = () => {
     setShowLanguageCard(!showLanguageCard);
   };
@@ -50,6 +43,18 @@ const Profile = ({navigation}) => {
               <Text style={styles.textNumber}>{phoneNumber}</Text>
             </View>
 
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity>
+                <Text style={styles.fakeText}>{t.profileFakeTextFirst}</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity>
+                <Text style={styles.fakeText}>{t.profileFakeTextSecond}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={styles.fakeText}>{t.profileFakeTextThird}</Text>
+              </TouchableOpacity>
+            </View>
             <View style={styles.buttonContainer}>
               <TouchableOpacity>
                 <Text style={styles.fakeText}>{t.editProfile}</Text>

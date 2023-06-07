@@ -91,9 +91,8 @@ const BuySell = ({navigation}) => {
         onHide: () => {
           Dialog.show({
             type: ALERT_TYPE.DANGER,
-            title: 'İPTAL',
-            textBody:
-              'Zamanında işlem yapmadığınız için işleminiz iptal edilmiştir.',
+            title: t.alertInfoCancel,
+            textBody: t.alertInfoNoTouch,
             button: t.close,
             onPressButton: () => {
               resetUnSuccesfully();
@@ -177,7 +176,7 @@ const BuySell = ({navigation}) => {
       onHide: () => {
         Toast.show({
           type: ALERT_TYPE.SUCCESS,
-          title: 'GELEN PARA',
+          title: t.alertInfoToast,
           textBody: `${sellingItemShortTitle} ${t.alertToastIncomingMoney}`,
         });
       },
