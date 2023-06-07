@@ -77,7 +77,9 @@ const CreateAccLast = ({navigation, route}) => {
       Dialog.show({
         type: ALERT_TYPE.SUCCESS,
         title: t.successfully,
-        textBody: t.alertCreateAccSuccesfully,
+        textBody: `Döviz cinsi: ${exchangeTypeState} 
+        Şube: ${departmentState} 
+        IBAN: ${iban}`,
         button: t.close,
         onHide: () => {
           navigation.navigate('CreateAccPage');

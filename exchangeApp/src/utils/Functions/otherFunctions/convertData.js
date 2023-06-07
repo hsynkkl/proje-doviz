@@ -30,8 +30,6 @@ export default function convertData(userId) {
               index++;
             }
           }
-          //console.log('index:(son)' + accounts.length);
-
           if (accounts.length > 0) {
             resolve(accounts);
           } else {
