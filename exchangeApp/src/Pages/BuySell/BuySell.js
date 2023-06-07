@@ -88,6 +88,19 @@ const BuySell = ({navigation}) => {
         onPressButton: () => {
           processing();
         },
+        onHide: () => {
+          Dialog.show({
+            type: ALERT_TYPE.DANGER,
+            title: 'İPTAL',
+            textBody:
+              'Zamanında işlem yapmadığınız için işleminiz iptal edilmiştir.',
+            button: t.close,
+            onPressButton: () => {
+              resetUnSuccesfully();
+              Dialog.hide();
+            },
+          });
+        },
         autoClose: 5000,
       });
     } else {
@@ -153,6 +166,7 @@ const BuySell = ({navigation}) => {
     setButtonTitleUpper(t.list);
     setShowTheThingUnder(false);
     setButtonTitleUnder(t.list);
+    setPriceBuying('');
     const accs = await getAccounts(userIdStr);
     dispatch({type: 'SET_FLATLISTDATA', payload: {datas: accs}});
     Dialog.show({
@@ -168,7 +182,6 @@ const BuySell = ({navigation}) => {
         });
       },
     });
-    //alert(t.alertSuccesfullyTansfer);
   };
   const resetUnSuccesfully = () => {
     setSelectedUpperId();
@@ -181,6 +194,7 @@ const BuySell = ({navigation}) => {
     setButtonTitleUpper(t.list);
     setShowTheThingUnder(false);
     setButtonTitleUnder(t.list);
+    setPriceBuying('');
   };
 
   const handleOpenUnder = async () => {
@@ -273,12 +287,6 @@ const BuySell = ({navigation}) => {
                 </View>
                 <View style={styles.textUpperPriceContainer}>
                   <View style={styles.inputContainer}>
-                    {/* <Input
-                    keyboardType={'number-pad'}
-                    placeHolder={''}
-                    backgroundColor={'rgba(255, 255, 255, 0.051)'}
-                    width={50}
-                    onType={setInputAmount}></Input> */}
                     <AmountInput onSearch={handleSearch} />
                   </View>
                 </View>
