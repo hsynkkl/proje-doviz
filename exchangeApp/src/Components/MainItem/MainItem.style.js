@@ -4,8 +4,8 @@ export default StyleSheet.create({
   textBalance: {fontSize: 15},
   innerContainer: {
     flexDirection: 'row',
-
-    alignItems: 'center',
+    alignItems: 'space-around',
+    //alignItems: 'center',
   },
   circle: {
     width: 10,

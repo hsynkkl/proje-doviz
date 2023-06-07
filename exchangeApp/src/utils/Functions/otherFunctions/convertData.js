@@ -17,25 +17,10 @@ export default function convertData(userId) {
           for (let i = 0; i < len; i++) {
             let item = res.rows.item(i);
             const value = parseInt(item.balance);
-
+            const value2 = parseInt(value.toFixed(0));
             const name = item.currencyType.toUpperCase();
 
             if (userId == item.userId) {
-              //console.log(typeof name);
-              let value2 = 0;
-              if (name === 'EUR') {
-                value2 = value * 21;
-              }
-              if (name === 'USD') {
-                value2 = value * 19;
-              }
-              if (name === 'GBP') {
-                value2 = value * 25;
-              }
-              if (name === 'TL') {
-                value2 = value;
-              }
-
               accounts.push({
                 id: i,
                 name: name,
