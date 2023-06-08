@@ -63,8 +63,9 @@ const styles = StyleSheet.create({
   },
   miniTitle: {color: 'rgba(255, 255, 255, 0.5)'},
   itemContainer: {
+    // height: '100%',
     flexDirection: 'row',
-    marginBottom: '2%',
+    // marginBottom: '1%',
     marginTop: '2%',
     paddingLeft: '4%',
     paddingRight: '12%',
@@ -81,10 +82,17 @@ const styles = StyleSheet.create({
   itemInnerLeftContainer: {
     width: '58%',
   },
-  flatListContainer: {marginBottom: '30%'},
-  buttonContainer: {
-    justifyContent: 'center',
-    alignContent: 'center',
+  flatListContainer: {
+    flexDirection: 'row',
+    height: '100%',
+  },
+  firstFlatListContainer: {width: '85%', height: '100%'},
+  secondFlatListContainer: {
+    marginTop: '1%',
+    width: '15%',
+    height: '100%',
+    //backgroundColor: '#0f0f0f',
+    // marginLeft: '-5%',
   },
 });
 

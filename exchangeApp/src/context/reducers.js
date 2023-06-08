@@ -1,9 +1,9 @@
 export default function (state, action) {
   switch (action.type) {
     case 'ADD_FAVLIST':
-      const {fav} = action.payload;
-      const newList = [...state.favList, fav];
-      return {...state, favList: newList};
+      const fav = action.payload;
+      const newList = [fav];
+      return {...state, favList: fav};
     case 'CLEAN_LIST':
       return {...state, favList: []};
     case 'CLEAN_USERIDLIST':

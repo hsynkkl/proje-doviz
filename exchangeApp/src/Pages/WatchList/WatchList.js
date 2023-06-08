@@ -9,15 +9,27 @@ import {
 } from 'react-native';
 import styles from './WatchList.style';
 import LinearGradient from 'react-native-linear-gradient';
-import Button from '../../Components/Button/Button';
 import Line from '../../Components/Line';
 import {socket} from '../../Router';
 import _ from 'lodash';
 import {useDispatch} from 'react-redux';
 import useTranslations from '../../Translation/useTranslations';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
-const Item = ({item, index}) => (
+let Data = [
+  {id: 1, name: 'USD', isFavorite: false},
+  {id: 2, name: 'EUR', isFavorite: false},
+  {id: 3, name: 'AUD', isFavorite: false},
+  {id: 4, name: 'CAD', isFavorite: false},
+  {id: 5, name: 'GBP', isFavorite: false},
+  {id: 6, name: 'JPY', isFavorite: false},
+  {id: 7, name: 'NOK', isFavorite: false},
+  {id: 8, name: 'SEK', isFavorite: false},
+  {id: 9, name: 'DKK', isFavorite: false},
+  {id: 10, name: 'SAR', isFavorite: false},
+  {id: 11, name: 'RUB', isFavorite: false},
+  {id: 12, name: 'RON', isFavorite: false},
+];
+const Item = ({item}) => (
   <SafeAreaView>
     <View style={styles.itemContainer}>
       <View style={styles.imageContainer}>
@@ -33,16 +45,30 @@ const Item = ({item, index}) => (
         <Text style={styles.itemPurchasePrice}>{item.sellPrice}</Text>
         <Text style={styles.itemBuyingPrice}>{item.buyPrice}</Text>
       </View>
-      <View style={styles.starIcon}>
+    </View>
+    <Line></Line>
+  </SafeAreaView>
+);
+const ItemSwitch = ({item, index}) => {
+  return (
+    <View>
+      <View
+        style={{
+          width: '100%',
+          //marginLeft: '-14%',
+          paddingRight: '25%',
+
+          marginBottom: '33.18%',
+          //backgroundColor: 'gray',
+        }}>
         <Switch
           onValueChange={value => setSwitchValue(value, index)}
           value={item.isFavorite}
         />
       </View>
     </View>
-    <Line></Line>
-  </SafeAreaView>
-);
+  );
+};
 const WatchList = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
 
@@ -56,12 +82,12 @@ const WatchList = ({navigation}) => {
       setLoading(false);
     });
   }, []);
-  if (ratesList != undefined) {
+  if (ratesList !== undefined) {
     setSwitchValue = (val, ind) => {
-      const tempData = _.clone(ratesList);
+      const tempData = _.clone(Data);
       tempData[ind].isFavorite = val;
-      setRatesList(tempData);
       setTempDataState(tempData);
+      handleAddFav();
     };
   }
   const handleAddFav = () => {
@@ -81,20 +107,18 @@ const WatchList = ({navigation}) => {
           <Text style={styles.title}>{t.currencyRates}</Text>
         </View>
         <View style={styles.flatListContainer}>
-          <FlatList
-            data={ratesList}
-            renderItem={Item}
-            keyExtractor={item => item.id}
-          />
-          <View style={styles.buttonContainer}>
-            <Button
-              text={t.addFav}
-              width={330}
-              height={35}
-              onPress={handleAddFav}
-              colorText={'#ffffff'}
-              borderRadius={14}
-              colorButton={'rgba(235, 87, 87, 0.75)'}
+          <View style={styles.firstFlatListContainer}>
+            <FlatList
+              data={ratesList}
+              renderItem={Item}
+              keyExtractor={item => item.id}
+            />
+          </View>
+          <View style={styles.secondFlatListContainer}>
+            <FlatList
+              data={Data}
+              renderItem={ItemSwitch}
+              keyExtractor={item => item.id}
             />
           </View>
         </View>

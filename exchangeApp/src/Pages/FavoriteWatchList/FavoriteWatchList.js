@@ -1,28 +1,49 @@
-import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, FlatList, ActivityIndicator} from 'react-native';
 import styles from './FavoriteWatchList.style';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSelector} from 'react-redux';
 import useTranslations from '../../Translation/useTranslations';
 import Item from '../../Components/FavoriteWatchListItem';
-
+import {socket} from '../../Router';
 const FavoriteWatchList = ({navigation}) => {
-  const {t, changeLanguage} = useTranslations();
-
   const list = useSelector(s => s.favList);
-  const flatListData = [];
-  list.forEach(data => {
-    for (let index = 0; index < data.length; index++) {
-      if (data[index].isFavorite == true) {
-        if (
-          flatListData.find(item => item.id == data[index].id) === undefined
-        ) {
-          flatListData.push(data[index]);
+  const [showFlatList, setShowFlatList] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [ratesList, setRatesList] = useState();
+  const [flatListData, setFlatListData] = useState();
+  const {t, changeLanguage} = useTranslations();
+  const favoriteData = [];
+  let listData = [];
+  useEffect(() => {
+    socket.on('exchange', data => {
+      setRatesList(data);
+    });
+  }, []);
+  useEffect(() => {
+    if (list.fav !== undefined) {
+      //setLoading(false);
+      setShowFlatList(true);
+      for (let i = 0; i < ratesList.length; i++) {
+        if (list.fav[i].isFavorite === true) {
+          favoriteData.push(list.fav[i].name);
         }
       }
+      for (let i = 0; i < ratesList.length; i++) {
+        for (let j = 0; j < favoriteData.length; j++) {
+          if (ratesList[i].id === favoriteData[j]) {
+            listData.push(ratesList[i]);
+          }
+        }
+      }
+      setFlatListData(listData);
+    } else {
     }
-  });
+  }, [list, ratesList]);
 
+  // if (loading) {
+  //   return <ActivityIndicator size="large" />;
+  // }
   return (
     <View style={styles.containerLinear}>
       <LinearGradient
@@ -31,13 +52,15 @@ const FavoriteWatchList = ({navigation}) => {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{t.favCurrencyRates}</Text>
         </View>
-        <View>
-          <FlatList
-            data={flatListData}
-            renderItem={Item}
-            keyExtractor={item => item.id}
-          />
-        </View>
+        {showFlatList && (
+          <View style={styles.flatListContainer}>
+            <FlatList
+              data={flatListData}
+              renderItem={Item}
+              keyExtractor={item => item.id}
+            />
+          </View>
+        )}
       </LinearGradient>
     </View>
   );

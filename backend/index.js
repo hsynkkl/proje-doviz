@@ -62,4 +62,4 @@ const getPrices = () => {
 
 setInterval(() => {
   getPrices();
-}, 2000);
+}, 1000);

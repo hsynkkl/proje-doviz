@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: '#FFFFFF',
   },
+  flatListContainer: {width: '100%', marginBottom: '19%'},
 });
 
 export default styles;
