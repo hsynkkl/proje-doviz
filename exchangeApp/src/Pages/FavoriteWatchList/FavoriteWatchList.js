@@ -1,28 +1,49 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList, ActivityIndicator} from 'react-native';
+import {View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
 import styles from './FavoriteWatchList.style';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSelector} from 'react-redux';
 import useTranslations from '../../Translation/useTranslations';
 import Item from '../../Components/FavoriteWatchListItem';
 import {socket} from '../../Router';
+const ItemFlags = ({item}) => {
+  return (
+    <View style={styles.imageContainer}>
+      <Image style={styles.logo} source={item.src} />
+    </View>
+  );
+};
 const FavoriteWatchList = ({navigation}) => {
   const list = useSelector(s => s.favList);
   const [showFlatList, setShowFlatList] = useState(false);
   const [loading, setLoading] = useState(true);
   const [ratesList, setRatesList] = useState();
   const [flatListData, setFlatListData] = useState();
+  const [images, setimages] = useState([
+    {src: require('../../utils/imgs/1.png'), id: 1},
+    {src: require('../../utils/imgs/2.png'), id: 2},
+    {src: require('../../utils/imgs/3.png'), id: 3},
+    {src: require('../../utils/imgs/4.png'), id: 4},
+    {src: require('../../utils/imgs/5.png'), id: 5},
+    {src: require('../../utils/imgs/6.png'), id: 6},
+    {src: require('../../utils/imgs/7.png'), id: 7},
+    {src: require('../../utils/imgs/8.png'), id: 8},
+    {src: require('../../utils/imgs/9.png'), id: 9},
+    {src: require('../../utils/imgs/10.png'), id: 10},
+    {src: require('../../utils/imgs/11.png'), id: 11},
+    {src: require('../../utils/imgs/12.png'), id: 12},
+  ]);
   const {t, changeLanguage} = useTranslations();
   const favoriteData = [];
   let listData = [];
   useEffect(() => {
     socket.on('exchange', data => {
       setRatesList(data);
+      setLoading(false);
     });
   }, []);
   useEffect(() => {
-    if (list.fav !== undefined) {
-      //setLoading(false);
+    if (list.fav !== undefined && ratesList !== undefined) {
       setShowFlatList(true);
       for (let i = 0; i < ratesList.length; i++) {
         if (list.fav[i].isFavorite === true) {
@@ -41,9 +62,9 @@ const FavoriteWatchList = ({navigation}) => {
     }
   }, [list, ratesList]);
 
-  // if (loading) {
-  //   return <ActivityIndicator size="large" />;
-  // }
+  if (loading) {
+    return <ActivityIndicator size="large" />;
+  }
   return (
     <View style={styles.containerLinear}>
       <LinearGradient
@@ -53,12 +74,27 @@ const FavoriteWatchList = ({navigation}) => {
           <Text style={styles.title}>{t.favCurrencyRates}</Text>
         </View>
         {showFlatList && (
-          <View style={styles.flatListContainer}>
-            <FlatList
-              data={flatListData}
-              renderItem={Item}
-              keyExtractor={item => item.id}
-            />
+          <View>
+            {/* <View style={styles.thirdFlatListContainer}>
+              <FlatList
+                data={images}
+                renderItem={ItemFlags}
+                keyExtractor={item => item.id}
+              />
+            </View> */}
+
+            <View style={styles.flatListContainer}>
+              <FlatList
+                data={flatListData}
+                renderItem={Item}
+                keyExtractor={item => item.id}
+              />
+            </View>
+          </View>
+        )}
+        {flatListData.length === 0 && (
+          <View>
+            <Text>boş </Text>
           </View>
         )}
       </LinearGradient>

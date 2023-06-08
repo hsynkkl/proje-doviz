@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
+  Image,
   FlatList,
   ActivityIndicator,
   Switch,
-  SafeAreaView,
 } from 'react-native';
 import styles from './WatchList.style';
 import LinearGradient from 'react-native-linear-gradient';
@@ -15,28 +15,17 @@ import _ from 'lodash';
 import {useDispatch} from 'react-redux';
 import useTranslations from '../../Translation/useTranslations';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-let Data = [
-  {id: 1, name: 'USD', isFavorite: false},
-  {id: 2, name: 'EUR', isFavorite: false},
-  {id: 3, name: 'AUD', isFavorite: false},
-  {id: 4, name: 'CAD', isFavorite: false},
-  {id: 5, name: 'GBP', isFavorite: false},
-  {id: 6, name: 'JPY', isFavorite: false},
-  {id: 7, name: 'NOK', isFavorite: false},
-  {id: 8, name: 'SEK', isFavorite: false},
-  {id: 9, name: 'DKK', isFavorite: false},
-  {id: 10, name: 'SAR', isFavorite: false},
-  {id: 11, name: 'RUB', isFavorite: false},
-  {id: 12, name: 'RON', isFavorite: false},
-];
+import Data from '../../utils/datas/watchListFlatListData.json';
+
 const Item = ({item}) => (
-  <SafeAreaView>
+  <View>
     <View style={styles.itemContainer}>
-      <View style={styles.imageContainer}>
+      {/* <View style={styles.imageContainer}>
         <Text>
           <FontAwesome name="exchange" size={30} />
         </Text>
-      </View>
+      </View> */}
+
       <View style={styles.itemInnerLeftContainer}>
         <Text style={styles.itemTitle}>{item.id}</Text>
         <Text style={styles.innerItemTitle}>{item.name}</Text>
@@ -47,7 +36,7 @@ const Item = ({item}) => (
       </View>
     </View>
     <Line></Line>
-  </SafeAreaView>
+  </View>
 );
 const ItemSwitch = ({item, index}) => {
   return (
@@ -69,19 +58,42 @@ const ItemSwitch = ({item, index}) => {
     </View>
   );
 };
+const ItemFlags = ({item}) => {
+  return (
+    <View style={styles.imageContainer}>
+      <Image style={styles.logo} source={item.src} />
+    </View>
+  );
+};
+
 const WatchList = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
-
+  const [deneme, setDeneme] = useState();
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const [ratesList, setRatesList] = useState();
   const [tempDataState, setTempDataState] = useState();
+  const [images, setimages] = useState([
+    {src: require('../../utils/imgs/1.png'), id: 1},
+    {src: require('../../utils/imgs/2.png'), id: 2},
+    {src: require('../../utils/imgs/3.png'), id: 3},
+    {src: require('../../utils/imgs/4.png'), id: 4},
+    {src: require('../../utils/imgs/5.png'), id: 5},
+    {src: require('../../utils/imgs/6.png'), id: 6},
+    {src: require('../../utils/imgs/7.png'), id: 7},
+    {src: require('../../utils/imgs/8.png'), id: 8},
+    {src: require('../../utils/imgs/9.png'), id: 9},
+    {src: require('../../utils/imgs/10.png'), id: 10},
+    {src: require('../../utils/imgs/11.png'), id: 11},
+    {src: require('../../utils/imgs/12.png'), id: 12},
+  ]);
   useEffect(() => {
     socket.on('exchange', data => {
       setRatesList(data);
       setLoading(false);
     });
   }, []);
+
   if (ratesList !== undefined) {
     setSwitchValue = (val, ind) => {
       const tempData = _.clone(Data);
@@ -107,6 +119,13 @@ const WatchList = ({navigation}) => {
           <Text style={styles.title}>{t.currencyRates}</Text>
         </View>
         <View style={styles.flatListContainer}>
+          <View style={styles.thirdFlatListContainer}>
+            <FlatList
+              data={images}
+              renderItem={ItemFlags}
+              keyExtractor={item => item.id}
+            />
+          </View>
           <View style={styles.firstFlatListContainer}>
             <FlatList
               data={ratesList}
@@ -122,6 +141,7 @@ const WatchList = ({navigation}) => {
             />
           </View>
         </View>
+        {/* <Button title="asd" onPress={deneme2}></Button> */}
       </LinearGradient>
     </View>
   );

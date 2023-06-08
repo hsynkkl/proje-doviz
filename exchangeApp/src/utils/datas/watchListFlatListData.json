@@ -1,0 +1,14 @@
+[
+  {"id": 1, "name": "USD", "isFavorite": false},
+  {"id": 2, "name": "EUR", "isFavorite": false},
+  {"id": 3, "name": "AUD", "isFavorite": false},
+  {"id": 4, "name": "CAD", "isFavorite": false},
+  {"id": 5, "name": "GBP", "isFavorite": false},
+  {"id": 6, "name": "JPY", "isFavorite": false},
+  {"id": 7, "name": "NOK", "isFavorite": false},
+  {"id": 8, "name": "SEK", "isFavorite": false},
+  {"id": 9, "name": "DKK", "isFavorite": false},
+  {"id": 10, "name": "SAR", "isFavorite": false},
+  {"id": 11, "name": "RUB", "isFavorite": false},
+  {"id": 12, "name": "RON", "isFavorite": false}
+]

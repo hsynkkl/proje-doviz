@@ -63,15 +63,21 @@ const styles = StyleSheet.create({
   },
   miniTitle: {color: 'rgba(255, 255, 255, 0.5)'},
   itemContainer: {
-    // height: '100%',
     flexDirection: 'row',
-    // marginBottom: '1%',
     marginTop: '2%',
-    paddingLeft: '4%',
-    paddingRight: '12%',
+    // paddingLeft: '8%',
+  },
+  logo: {
+    resizeMode: 'contain',
+    height: 36,
   },
   imageContainer: {
-    paddingRight: '3%',
+    width: '100%',
+    //marginLeft: '-14%',
+    //paddingRight: '25%',
+
+    marginBottom: '23.18%',
+    // paddingRight: '0%',
   },
   starIcon: {
     width: '15%',
@@ -86,13 +92,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: '100%',
   },
-  firstFlatListContainer: {width: '85%', height: '100%'},
+  firstFlatListContainer: {
+    width: '78%',
+    height: '100%',
+  },
   secondFlatListContainer: {
     marginTop: '1%',
     width: '15%',
     height: '100%',
-    //backgroundColor: '#0f0f0f',
-    // marginLeft: '-5%',
+  },
+  thirdFlatListContainer: {
+    paddingTop: 5,
+
+    width: '11%',
+    height: '100%',
+    //backgroundColor: 'black',
   },
 });
 

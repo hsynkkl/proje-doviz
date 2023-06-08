@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import styles from './FavoriteWatchListItem.style';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Line from '../Line';
@@ -7,9 +7,7 @@ const Item = ({item}) => (
   <View>
     <View style={styles.itemContainer}>
       <View style={styles.imageContainer}>
-        <Text>
-          <FontAwesome name="exchange" size={30} />
-        </Text>
+        <Image style={styles.logo} source={require('../../utils/imgs/7.png')} />
       </View>
       <View style={styles.itemInnerContainer}>
         <Text style={styles.itemTitle}>{item.id}</Text>
