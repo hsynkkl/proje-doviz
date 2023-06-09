@@ -63,10 +63,10 @@ const Router = () => {
           headerShown: false,
           tabBarIcon: ({focused, size, colour}) => {
             let iconName;
-            if (route.name == 'Döviz Listesi') {
+            if (route.name == 'Watch List') {
               iconName = focused ? 'list' : 'list';
               size = focused ? size + 11 : size + 5;
-            } else if (route.name == 'Favori Döviz Listesi') {
+            } else if (route.name == 'Favorites') {
               iconName = focused ? 'add-to-list' : 'add-to-list';
               size = focused ? size + 11 : size + 5;
             }
@@ -79,8 +79,8 @@ const Router = () => {
             color: '#ffffff',
           },
         })}>
-        <Tab.Screen name="Döviz Listesi" component={WatchList} />
-        <Tab.Screen name="Favori Döviz Listesi" component={FavoriteWatchList} />
+        <Tab.Screen name="Watch List" component={WatchList} />
+        <Tab.Screen name="Favorites" component={FavoriteWatchList} />
       </Tab.Navigator>
     );
   }

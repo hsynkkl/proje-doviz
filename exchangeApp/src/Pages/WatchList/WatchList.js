@@ -1,37 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  FlatList,
-  ActivityIndicator,
-  Switch,
-} from 'react-native';
+import {View, Text, FlatList, ActivityIndicator, Switch} from 'react-native';
 import styles from './WatchList.style';
 import LinearGradient from 'react-native-linear-gradient';
-import Line from '../../Components/Line';
 import {socket} from '../../Router';
 import _ from 'lodash';
 import {useDispatch} from 'react-redux';
 import useTranslations from '../../Translation/useTranslations';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Data from '../../utils/datas/watchListFlatListData.json';
-
-const Item = ({item}) => (
-  <View>
-    <View style={styles.itemContainer}>
-      <View style={styles.itemInnerLeftContainer}>
-        <Text style={styles.itemTitle}>{item.id}</Text>
-        <Text style={styles.innerItemTitle}>{item.name}</Text>
-      </View>
-      <View style={styles.itemInnerRightContainer}>
-        <Text style={styles.itemPurchasePrice}>{item.sellPrice}</Text>
-        <Text style={styles.itemBuyingPrice}>{item.buyPrice}</Text>
-      </View>
-    </View>
-    <Line></Line>
-  </View>
-);
+import Item from '../../Components/WatchListItem';
+import ItemFlags from '../../Components/ItemFlags';
 const ItemSwitch = ({item, index}) => {
   return (
     <View>
@@ -51,14 +28,6 @@ const ItemSwitch = ({item, index}) => {
     </View>
   );
 };
-const ItemFlags = ({item}) => {
-  return (
-    <View style={styles.imageContainer}>
-      <Image style={styles.logo} source={item.src} />
-    </View>
-  );
-};
-
 const WatchList = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
   const [deneme, setDeneme] = useState();
@@ -135,7 +104,6 @@ const WatchList = ({navigation}) => {
             />
           </View>
         </View>
-        {/* <Button title="asd" onPress={deneme2}></Button> */}
       </LinearGradient>
     </View>
   );

@@ -1,19 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
+import {View, Text, FlatList, ActivityIndicator} from 'react-native';
 import styles from './FavoriteWatchList.style';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSelector} from 'react-redux';
 import useTranslations from '../../Translation/useTranslations';
 import Item from '../../Components/FavoriteWatchListItem';
 import {socket} from '../../Router';
-const ItemFlags = ({item}) => {
-  return (
-    <View style={styles.imageContainer}>
-      <Image style={styles.logo} source={item.src} />
-    </View>
-  );
-};
-
+import ItemFlags from '../../Components/ItemFlagsFav';
 const FavoriteWatchList = ({navigation}) => {
   const list = useSelector(s => s.favList);
   const [showFlatList, setShowFlatList] = useState(false);
@@ -39,10 +32,6 @@ const FavoriteWatchList = ({navigation}) => {
   const favoriteData = [];
   let imagesData = [];
   let listData = [];
-  const deneme = () => {
-    if (list.fav !== undefined && ratesList !== undefined) {
-    }
-  };
   useEffect(() => {
     socket.on('exchange', data => {
       setRatesList(data);

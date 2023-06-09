@@ -5,7 +5,7 @@ export default StyleSheet.create({
   innerContainer: {
     flexDirection: 'row',
     alignItems: 'space-around',
-    //alignItems: 'center',
+    alignItems: 'center',
   },
   circle: {
     width: 10,
