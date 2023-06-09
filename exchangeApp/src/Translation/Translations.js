@@ -100,6 +100,10 @@ export default {
     alertInfoNoTouch:
       'Zamanında işlem yapmadığınız için işleminiz iptal edilmiştir.',
     alertInfoCancel: 'İPTAL',
+    alertDangerPassword: 'Şifreniz en az 8 karakterden oluşmalıdır.',
+    alertDangerPhoneNumber: 'Geçerli telefon numarası giriniz.',
+    alertDangerPhoto: 'Lütfen fotoğraf ekleyiniz.',
+    alertDangerLoginValues: 'Lütfen gerekli yerleri doldurunuz.',
   },
   eng: {
     welcome: 'Welcome.',
@@ -202,6 +206,10 @@ export default {
     alertInfoNoTouch:
       'Your transaction has been canceled because you did not take action on time.',
     alertInfoCancel: 'CANCEL',
+    alertDangerPassword: 'Your password must consist of at least 8 characters.',
+    alertDangerPhoneNumber: 'Please enter valid phone number.',
+    alertDangerPhoto: 'Please add photos.',
+    alertDangerLoginValues: 'Please fill in the required fields.',
   },
   pl: {
     welcome: 'Powitanie.',
@@ -301,5 +309,9 @@ export default {
     alertInfoNoTouch:
       'Twoja transakcja została anulowana, ponieważ nie podjąłeś działań na czas.',
     alertInfoCancel: 'ANULOWAĆ',
+    alertDangerPassword: 'Twoje hasło musi składać się z co najmniej 8 znaków.',
+    alertDangerPhoneNumber: 'Podaj prawidłowy numer telefonu.',
+    alertDangerPhoto: 'Proszę dodać zdjęcia.',
+    alertDangerLoginValues: 'Proszę wypełnić wymagane pola.',
   },
 };

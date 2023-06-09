@@ -68,7 +68,8 @@ const LoginSecond = ({navigation}) => {
                     value={values.identifyNo}
                     onType={handleChange('identifyNo')}
                     placeHolder={t.inputTC}
-                    keyboardType={'number-pad'}></Input>
+                    keyboardType={'number-pad'}
+                    maxLength={11}></Input>
 
                   <Input
                     value={values.password}

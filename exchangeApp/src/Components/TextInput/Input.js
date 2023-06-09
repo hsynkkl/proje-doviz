@@ -11,6 +11,7 @@ function Input({
   backgroundColor,
   keyboardType,
   secureTextEntry,
+  maxLength,
 }) {
   return (
     <View style={styles.container}>
@@ -29,6 +30,7 @@ function Input({
           keyboardType={keyboardType}
           secureTextEntry={secureTextEntry}
           onPressIn={onPressIn}
+          maxLength={maxLength}
         />
       </View>
     </View>

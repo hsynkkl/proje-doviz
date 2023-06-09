@@ -8,7 +8,7 @@ import Line from '../../Components/Line';
 import LinearGradient from 'react-native-linear-gradient';
 import useTranslations from '../../Translation/useTranslations';
 import DatePicker from 'react-native-date-picker';
-
+import checkLoginValues from '../../utils/Functions/otherFunctions/checkLoginValues';
 import isTrueIdentify from '../../utils/Functions/otherFunctions/isTrueIdentify';
 import {
   ALERT_TYPE,
@@ -21,25 +21,38 @@ const SignUpCon = ({navigation}) => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [datePlaceHolder, setDatePlaceHolder] = useState(t.dateofBD);
-
-  function handleLogin(values) {
-    if (isTrueIdentify(values.identifyNo)) {
-      navigation.navigate('SignUpPhotoPage', {
-        name: values.name,
-        surname: values.surname,
-        dobd: datePlaceHolder,
-        tckn: values.identifyNo,
-      });
+  let isTrueLoginValues = false;
+  const handleLogin = async values => {
+    isTrueLoginValues = await checkLoginValues(
+      values.name,
+      values.surname,
+      datePlaceHolder,
+    );
+    if (isTrueLoginValues === true) {
+      if (isTrueIdentify(values.identifyNo)) {
+        navigation.navigate('SignUpPhotoPage', {
+          name: values.name,
+          surname: values.surname,
+          dobd: datePlaceHolder,
+          tckn: values.identifyNo,
+        });
+      } else {
+        Dialog.show({
+          type: ALERT_TYPE.DANGER,
+          title: t.error,
+          textBody: t.alertWrongTRIN,
+          button: t.close,
+        });
+      }
     } else {
       Dialog.show({
         type: ALERT_TYPE.DANGER,
         title: t.error,
-        textBody: t.alertWrongTRIN,
+        textBody: t.alertDangerLoginValues,
         button: t.close,
       });
-      // alert(t.alertWrongTRIN);
     }
-  }
+  };
   return (
     <AlertNotificationRoot>
       <View style={styles.containerLinear}>
