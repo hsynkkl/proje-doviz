@@ -6,20 +6,35 @@ import Line from '../../Components/Line';
 import LinearGradient from 'react-native-linear-gradient';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import useTranslations from '../../Translation/useTranslations';
-
+import checkPhotoUri from '../../utils/Functions/otherFunctions/checkPhotoUri';
+import {
+  ALERT_TYPE,
+  Dialog,
+  AlertNotificationRoot,
+  Toast,
+} from 'react-native-alert-notification';
 const SignUpPhoto = ({navigation, route}) => {
   const {t, changeLanguage} = useTranslations();
-
-  function goToSignUpLast() {
-    console.log(typeof cameraPhoto);
-    navigation.navigate('SignUpLastPage', {
-      name: route.params.name,
-      surname: route.params.surname,
-      dobd: route.params.dobd,
-      tckn: route.params.tckn,
-      photoUri: cameraPhoto,
-    });
-  }
+  let isTruePhotoUri = false;
+  const goToSignUpLast = async () => {
+    isTruePhotoUri = await checkPhotoUri(cameraPhoto);
+    if (isTruePhotoUri === true) {
+      navigation.navigate('SignUpLastPage', {
+        name: route.params.name,
+        surname: route.params.surname,
+        dobd: route.params.dobd,
+        tckn: route.params.tckn,
+        photoUri: cameraPhoto,
+      });
+    } else {
+      Dialog.show({
+        type: ALERT_TYPE.DANGER,
+        title: t.error,
+        textBody: t.alertDangerPhoto,
+        button: t.close,
+      });
+    }
+  };
   function goToLogin() {
     navigation.navigate('LoginPage');
   }
@@ -43,59 +58,61 @@ const SignUpPhoto = ({navigation, route}) => {
     setCameraPhoto(result.assets[0].uri);
   };
   return (
-    <View style={styles.containerLinear}>
-      <LinearGradient
-        colors={['#FEB700', '#F30000']}
-        style={styles.linearGradient}>
-        <View style={styles.container}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>{t.titleSignUp}</Text>
-            <Line />
-          </View>
-          <View style={styles.underContainer}>
-            <View style={styles.imageContainer}>
-              <Image style={styles.image} source={{uri: cameraPhoto}} />
+    <AlertNotificationRoot>
+      <View style={styles.containerLinear}>
+        <LinearGradient
+          colors={['#FEB700', '#F30000']}
+          style={styles.linearGradient}>
+          <View style={styles.container}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.titleText}>{t.titleSignUp}</Text>
+              <Line />
             </View>
-            <View style={styles.innerButtonContainer}>
+            <View style={styles.underContainer}>
+              <View style={styles.imageContainer}>
+                <Image style={styles.image} source={{uri: cameraPhoto}} />
+              </View>
+              <View style={styles.innerButtonContainer}>
+                <Button
+                  text={t.openCamera}
+                  onPress={openCamera}
+                  width={150}
+                  height={35}
+                  colorButton={'#ffffff'}
+                  colorText={'#5A6CF3'}
+                />
+                <Button
+                  text={t.openGallery}
+                  onPress={openGallery}
+                  width={150}
+                  height={35}
+                  colorButton={'#ffffff'}
+                  colorText={'#5A6CF3'}
+                />
+              </View>
+            </View>
+            <View style={styles.buttonContainer}>
               <Button
-                text={t.openCamera}
-                onPress={openCamera}
-                width={150}
-                height={35}
+                text={t.back}
+                onPress={goToLogin}
                 colorButton={'#ffffff'}
                 colorText={'#5A6CF3'}
-              />
-              <Button
-                text={t.openGallery}
-                onPress={openGallery}
                 width={150}
                 height={35}
+              />
+              <Button
+                text={t.continue}
+                onPress={goToSignUpLast}
                 colorButton={'#ffffff'}
                 colorText={'#5A6CF3'}
+                width={150}
+                height={35}
               />
             </View>
           </View>
-          <View style={styles.buttonContainer}>
-            <Button
-              text={t.back}
-              onPress={goToLogin}
-              colorButton={'#ffffff'}
-              colorText={'#5A6CF3'}
-              width={150}
-              height={35}
-            />
-            <Button
-              text={t.continue}
-              onPress={goToSignUpLast}
-              colorButton={'#ffffff'}
-              colorText={'#5A6CF3'}
-              width={150}
-              height={35}
-            />
-          </View>
-        </View>
-      </LinearGradient>
-    </View>
+        </LinearGradient>
+      </View>
+    </AlertNotificationRoot>
   );
 };
 

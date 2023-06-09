@@ -65,7 +65,6 @@ const WatchList = ({navigation}) => {
     };
   }
   const handleAddFav = () => {
-    // console.log(images);
     dispatch({type: 'CLEAN_LIST'});
     dispatch({type: 'ADD_FAVLIST', payload: {fav: tempDataState}});
   };

@@ -7,6 +7,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import Input from '../../Components/TextInput';
 import useTranslations from '../../Translation/useTranslations';
 import {Formik} from 'formik';
+import checkPassword from '../../utils/Functions/otherFunctions/checkPassword';
+import checkNumber from '../../utils/Functions/otherFunctions/checkNumber';
 import setDataToDB from '../../utils/Functions/dbFunctions/usersDB/setDataToDB';
 import {
   ALERT_TYPE,
@@ -16,28 +18,48 @@ import {
 } from 'react-native-alert-notification';
 const SignUpLast = ({navigation, route}) => {
   const {t, changeLanguage} = useTranslations();
-
+  let isTruePassword = false;
   const data = route.params;
-  let deger = false;
+  let isTrueIN = false;
+  let isTrueNumber = false;
   const handleForSubmit = async values => {
-    if (values.password == values.passwordConfirm) {
-      deger = await setDataToDB(data, values);
-      if (deger == true) {
-        Dialog.show({
-          type: ALERT_TYPE.SUCCESS,
-          title: t.successfully,
-          textBody: t.alertSuccessCreateAcc,
-          button: t.close,
-          onHide: () => {
-            navigation.navigate('LoginPage');
-          },
-        });
+    if (values.password === values.passwordConfirm) {
+      isTruePassword = await checkPassword(values.password);
+      isTrueIN = await setDataToDB(data, values);
+      isTrueNumber = await checkNumber(values.phoneNumber);
+      if (isTrueNumber === true) {
+        if (isTruePassword === true) {
+          if (isTrueIN == true) {
+            Dialog.show({
+              type: ALERT_TYPE.SUCCESS,
+              title: t.successfully,
+              textBody: t.alertSuccessCreateAcc,
+              button: t.close,
+              onHide: () => {
+                navigation.navigate('LoginPage');
+              },
+            });
+          } else {
+            Dialog.show({
+              type: ALERT_TYPE.DANGER,
+              title: t.error,
+              textBody: t.alertUsingTRIN,
+              button: t.close,
+            });
+          }
+        } else {
+          Dialog.show({
+            type: ALERT_TYPE.DANGER,
+            title: t.error,
+            textBody: t.alertDangerPassword,
+            button: t.close,
+          });
+        }
       } else {
-        //alert(t.alertUsingTRIN);
         Dialog.show({
           type: ALERT_TYPE.DANGER,
           title: t.error,
-          textBody: t.alertUsingTRIN,
+          textBody: t.alertDangerPhoneNumber,
           button: t.close,
         });
       }
@@ -48,7 +70,6 @@ const SignUpLast = ({navigation, route}) => {
         textBody: t.alertSamePassword,
         button: t.close,
       });
-      //alert(t.alertSamePassword);
     }
   };
 
