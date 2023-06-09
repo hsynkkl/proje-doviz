@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, Image, FlatList} from 'react-native';
 import styles from './CreateAccSecond.style';
 import LinearGradient from 'react-native-linear-gradient';
 import Button from '../../Components/Button';

@@ -23,7 +23,6 @@ import TranslationsProvider from './Translation/TranslationProvider';
 import UserProvider from './context/Provider.js';
 import History from './Pages/History';
 import AccountsPage from './Pages/AccountsPage';
-
 import Entypo from 'react-native-vector-icons/Entypo';
 
 const Stack = createNativeStackNavigator();
@@ -63,10 +62,10 @@ const Router = () => {
           headerShown: false,
           tabBarIcon: ({focused, size, colour}) => {
             let iconName;
-            if (route.name == 'Watch List') {
+            if (route.name == 'Döviz Listesi') {
               iconName = focused ? 'list' : 'list';
               size = focused ? size + 11 : size + 5;
-            } else if (route.name == 'Favorites') {
+            } else if (route.name == 'Favoriler') {
               iconName = focused ? 'add-to-list' : 'add-to-list';
               size = focused ? size + 11 : size + 5;
             }
@@ -79,8 +78,8 @@ const Router = () => {
             color: '#ffffff',
           },
         })}>
-        <Tab.Screen name="Watch List" component={WatchList} />
-        <Tab.Screen name="Favorites" component={FavoriteWatchList} />
+        <Tab.Screen name="Döviz Listesi" component={WatchList} />
+        <Tab.Screen name="Favoriler" component={FavoriteWatchList} />
       </Tab.Navigator>
     );
   }

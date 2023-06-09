@@ -19,8 +19,8 @@ const ItemSwitch = ({item, index}) => {
           marginBottom: '33.18%',
         }}>
         <Switch
-          trackColor={{true: '#FEB700', false: 'gray'}}
-          thumbColor={'white'}
+          trackColor={{true: '#FEB000', false: 'gray'}}
+          thumbColor={'#FEB700'}
           onValueChange={value => setSwitchValue(value, index)}
           value={item.isFavorite}
         />
