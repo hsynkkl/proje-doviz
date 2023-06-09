@@ -1,9 +1,7 @@
 require("dotenv").config();
-
 const PORT = 3000;
 const express = require("express");
 const socketIO = require("socket.io");
-const axios = require("axios");
 const app = express();
 
 const server = app.listen(process.env.PORT, () => {
@@ -23,41 +21,73 @@ socketHandler.on("connection", (socket) => {
 });
 
 const getPrices = () => {
-  axios
-    .get(process.env.LIST_URL)
-    .then((response) => {
-      const randomValues = () => {
-        const value = Math.random() * 10 + 15;
-        const valueSTR = value.toFixed(3);
-        return valueSTR.toString();
-      };
-      const list = [
-        (USD = response.data.USD),
-        (EUR = response.data.EUR),
-        (AUD = response.data.AUD),
-        (CAD = response.data.CAD),
-        (GBP = response.data.GBP),
-        (JPY = response.data.JPY),
-        (NOK = response.data.NOK),
-        (SEK = response.data.SEK),
-        (DKK = response.data.DKK),
-        (SAR = response.data.SAR),
-        (RUB = response.data.RUB),
-        (RON = response.data.RON),
-      ];
-      const priceList = list.map((item) => {
-        return {
-          id: item.Kod,
-          name: item.CurrencyName,
-          sellPrice: randomValues(),
-          buyPrice: item.ForexBuying,
-        };
-      });
-      socketHandler.emit("exchange", priceList);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  const randomValues = () => {
+    const value = Math.random() * 10 + 15;
+    const valueSTR = value.toFixed(3);
+    return valueSTR.toString();
+  };
+  const DATA = [
+    {
+      id: "USD",
+      name: "US DOLLAR",
+    },
+    {
+      id: "EUR",
+      name: "EURO",
+    },
+    {
+      id: "AUD",
+      name: "AUSTRALIAN DOLLAR",
+    },
+    {
+      id: "CAD",
+      name: "CANADIAN DOLLAR",
+    },
+    {
+      id: "GBP",
+      name: "POUND STERLING",
+    },
+    {
+      id: "JPY",
+      name: "JAPENESE YEN",
+    },
+    {
+      id: "NOK",
+      name: "NORWEGIAN KRONE",
+    },
+    {
+      id: "SEK",
+      name: "SWEDISH KRONA",
+    },
+    {
+      id: "SAR",
+      name: "SAUDI RIYAL",
+    },
+    {
+      id: "DKK",
+      name: "DANISH KRONE",
+    },
+
+    {
+      id: "CHF",
+      name: "CONFEDERATIO FRANC",
+    },
+    {
+      id: "TRY",
+      name: "TURKISH LIRA",
+    },
+  ];
+
+  const priceList = DATA.map((item) => {
+    return {
+      id: item.id,
+      name: item.name,
+      sellPrice: randomValues(),
+      buyPrice: randomValues(),
+    };
+  });
+
+  socketHandler.emit("exchange", priceList);
 };
 
 setInterval(() => {

@@ -174,6 +174,8 @@ const BuySell = ({navigation}) => {
     setShowTheThingUnder(false);
     setButtonTitleUnder(t.list);
     setPriceBuying('');
+    setUpperImage();
+    setUnderImage();
     const accs = await getAccounts(userIdStr);
     dispatch({type: 'SET_FLATLISTDATA', payload: {datas: accs}});
     Dialog.show({
@@ -202,6 +204,8 @@ const BuySell = ({navigation}) => {
     setShowTheThingUnder(false);
     setButtonTitleUnder(t.list);
     setPriceBuying('');
+    setUpperImage();
+    setUnderImage();
   };
 
   const handleOpenUnder = async () => {
