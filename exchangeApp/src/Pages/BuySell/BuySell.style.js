@@ -21,6 +21,12 @@ const styles = StyleSheet.create({
     height: 105,
     marginTop: 50,
   },
+  imageContainerUpper: {
+    paddingTop: '18%',
+  },
+  imageContainerUnder: {
+    paddingTop: '11%',
+  },
   bottomExchangeContainer: {
     backgroundColor: 'rgba(255, 255, 255, 0.25);',
     borderBottomLeftRadius: 14,

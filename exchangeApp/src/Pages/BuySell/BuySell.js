@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, ActivityIndicator, FlatList} from 'react-native';
+import {View, Text, ActivityIndicator, Image, FlatList} from 'react-native';
 import transferingMoney from '../../utils/Functions/dbFunctions/userAccountsDB/transferingMoney';
 import styles from './BuySell.style';
 import LinearGradient from 'react-native-linear-gradient';
@@ -25,6 +25,12 @@ import {
   Toast,
 } from 'react-native-alert-notification';
 const BuySell = ({navigation}) => {
+  const [images, setimages] = useState([
+    {src: require('../../utils/imgs/tl.png'), id: 1, name: 'TL'},
+    {src: require('../../utils/imgs/usd.png'), id: 2, name: 'USD'},
+    {src: require('../../utils/imgs/euro.png'), id: 3, name: 'EUR'},
+    {src: require('../../utils/imgs/gbp.png'), id: 4, name: 'GBP'},
+  ]);
   const {t, changeLanguage} = useTranslations();
   const [loading, setLoading] = useState(true);
   const [ratesList, setRatesList] = useState();
@@ -44,6 +50,8 @@ const BuySell = ({navigation}) => {
   const [inputAmount, setInputAmount] = useState();
   const [flatListData, setFlatListData] = useState();
   const [priceBuying, setPriceBuying] = useState('');
+  const [upperImage, setUnderImage] = useState();
+  const [underImage, setUpperImage] = useState();
   const [selectedUpperCurrencyTypeText, setSelectedUpperCurrencyTypeText] =
     useState('');
   const [selectedUnderCurrencyTypeText, setSelectedUnderCurrencyTypeText] =
@@ -206,6 +214,13 @@ const BuySell = ({navigation}) => {
     const titles = await currencyTypeTextSplit(selectedUnderCurrencyTypeText);
     setSellingItemShortTitle(titles[0]);
     setSellingItemLongTitle(titles[1]);
+    if (typeof titles[0] !== undefined) {
+      for (let i = 0; i < images.length; i++) {
+        if (images[i].name === titles[0]) {
+          setUpperImage(images[i].src);
+        }
+      }
+    }
   };
   const handleOpenUpper = async () => {
     setShowTheThingUpper(!showTheThingUpper);
@@ -217,6 +232,13 @@ const BuySell = ({navigation}) => {
     const titles = await currencyTypeTextSplit(selectedUpperCurrencyTypeText);
     setBuyingItemShortTitle(titles[0]);
     setBuyingItemLongTitle(titles[1]);
+    if (typeof titles[0] !== undefined) {
+      for (let i = 0; i < images.length; i++) {
+        if (images[i].name === titles[0]) {
+          setUnderImage(images[i].src);
+        }
+      }
+    }
   };
 
   const renderItemUpper = ({item}) => {
@@ -275,6 +297,9 @@ const BuySell = ({navigation}) => {
               <View style={styles.flatListContainer}>
                 <View style={styles.innerLeftContainer}>
                   <View style={styles.topExchangeImage}></View>
+                  <View style={styles.imageContainerUpper}>
+                    <Image style={styles.logo} source={upperImage} />
+                  </View>
                   <View style={styles.itemInnerContainer}>
                     <Text style={styles.itemShortTitle}>
                       {buyingItemShortTitle}
@@ -302,6 +327,9 @@ const BuySell = ({navigation}) => {
               <View style={styles.flatListContainer}>
                 <View style={styles.innerLeftContainer}>
                   <View style={styles.topExchangeImage}></View>
+                  <View style={styles.imageContainerUnder}>
+                    <Image style={styles.logo} source={underImage} />
+                  </View>
                   <View style={styles.itemInnerContainer}>
                     <Text style={styles.itemShortTitle}>
                       {sellingItemShortTitle}

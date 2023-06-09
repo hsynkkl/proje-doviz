@@ -1,7 +1,6 @@
 export default function currencyTypeTextSplit(currency) {
   return new Promise(resolve => {
     const insideCurrency = currency;
-    //console.log(insideCurrency);
     const words = insideCurrency.split(' ');
     const shortTitle = words[0];
     var longTitle = '';
