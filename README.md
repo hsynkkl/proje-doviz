@@ -22,7 +22,10 @@
 ## Start
 - cd proje-doviz/exchangeApp </br>
 - npx react-native start </br>
+- Open new terminal </br>
+- cd proje-doviz/exchangeApp </br>
 - npx react-native run-android </br>
+- Open new terminal </br>
 - cd proje-doviz/backend </br>
 - nodemon index.js </br>
 
