@@ -20,12 +20,6 @@ import Data from '../../utils/datas/watchListFlatListData.json';
 const Item = ({item}) => (
   <View>
     <View style={styles.itemContainer}>
-      {/* <View style={styles.imageContainer}>
-        <Text>
-          <FontAwesome name="exchange" size={30} />
-        </Text>
-      </View> */}
-
       <View style={styles.itemInnerLeftContainer}>
         <Text style={styles.itemTitle}>{item.id}</Text>
         <Text style={styles.innerItemTitle}>{item.name}</Text>
@@ -44,11 +38,8 @@ const ItemSwitch = ({item, index}) => {
       <View
         style={{
           width: '100%',
-          //marginLeft: '-14%',
           paddingRight: '25%',
-
           marginBottom: '33.18%',
-          //backgroundColor: 'gray',
         }}>
         <Switch
           trackColor={{true: '#FEB700', false: 'gray'}}
@@ -105,6 +96,7 @@ const WatchList = ({navigation}) => {
     };
   }
   const handleAddFav = () => {
+    // console.log(images);
     dispatch({type: 'CLEAN_LIST'});
     dispatch({type: 'ADD_FAVLIST', payload: {fav: tempDataState}});
   };

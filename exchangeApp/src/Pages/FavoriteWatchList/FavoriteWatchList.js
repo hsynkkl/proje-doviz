@@ -13,6 +13,7 @@ const ItemFlags = ({item}) => {
     </View>
   );
 };
+
 const FavoriteWatchList = ({navigation}) => {
   const list = useSelector(s => s.favList);
   const [showFlatList, setShowFlatList] = useState(false);
@@ -33,9 +34,15 @@ const FavoriteWatchList = ({navigation}) => {
     {src: require('../../utils/imgs/11.png'), id: 11},
     {src: require('../../utils/imgs/12.png'), id: 12},
   ]);
+  const [favImages, setFavImages] = useState();
   const {t, changeLanguage} = useTranslations();
   const favoriteData = [];
+  let imagesData = [];
   let listData = [];
+  const deneme = () => {
+    if (list.fav !== undefined && ratesList !== undefined) {
+    }
+  };
   useEffect(() => {
     socket.on('exchange', data => {
       setRatesList(data);
@@ -57,6 +64,12 @@ const FavoriteWatchList = ({navigation}) => {
           }
         }
       }
+      for (let i = 0; i < list.fav.length; i++) {
+        if (list.fav[i].isFavorite === true) {
+          imagesData.push(images[i]);
+        }
+      }
+      setFavImages(imagesData);
       setFlatListData(listData);
     } else {
     }
@@ -74,27 +87,21 @@ const FavoriteWatchList = ({navigation}) => {
           <Text style={styles.title}>{t.favCurrencyRates}</Text>
         </View>
         {showFlatList && (
-          <View>
-            {/* <View style={styles.thirdFlatListContainer}>
+          <View style={styles.flatListContainer}>
+            <View style={styles.thirdFlatListContainer}>
               <FlatList
-                data={images}
+                data={favImages}
                 renderItem={ItemFlags}
                 keyExtractor={item => item.id}
               />
-            </View> */}
-
-            <View style={styles.flatListContainer}>
+            </View>
+            <View style={styles.innerFlatListContainer}>
               <FlatList
                 data={flatListData}
                 renderItem={Item}
                 keyExtractor={item => item.id}
               />
             </View>
-          </View>
-        )}
-        {flatListData.length === 0 && (
-          <View>
-            <Text>boş </Text>
           </View>
         )}
       </LinearGradient>

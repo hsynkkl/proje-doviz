@@ -2,10 +2,7 @@ import {StyleSheet, StatusBar} from 'react-native';
 export default StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
-    marginBottom: 5,
-    marginTop: 8,
-    paddingLeft: 16,
-    paddingRight: 16,
+    marginTop: '2.5%',
   },
   imageContainer: {
     paddingRight: '3%',

@@ -16,11 +16,8 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: '100%',
-    //marginLeft: '-14%',
-    //paddingRight: '25%',
 
-    marginBottom: '23.18%',
-    // paddingRight: '0%',
+    marginBottom: '31.18%',
   },
   logo: {
     resizeMode: 'contain',
@@ -34,13 +31,16 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: '#FFFFFF',
   },
-  flatListContainer: {width: '100%', marginBottom: '19%'},
+  innerFlatListContainer: {width: '90%', marginBottom: '10%', height: '90%'},
   thirdFlatListContainer: {
-    paddingTop: 5,
-
-    width: '11%',
+    paddingTop: 7,
+    marginTop: '1%',
+    width: '10%',
     height: '100%',
-    //backgroundColor: 'black',
+  },
+  flatListContainer: {
+    flexDirection: 'row',
+    height: '100%',
   },
 });
 
