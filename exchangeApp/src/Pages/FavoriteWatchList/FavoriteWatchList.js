@@ -27,11 +27,14 @@ const FavoriteWatchList = ({navigation}) => {
     {src: require('../../utils/imgs/11.png'), id: 11},
     {src: require('../../utils/imgs/12.png'), id: 12},
   ]);
+
+  const [showEmptyScreen, setShowEmptyScreen] = useState(false);
   const [favImages, setFavImages] = useState();
   const {t, changeLanguage} = useTranslations();
   const favoriteData = [];
   let imagesData = [];
   let listData = [];
+  let counter = 0;
   useEffect(() => {
     socket.on('exchange', data => {
       setRatesList(data);
@@ -56,11 +59,18 @@ const FavoriteWatchList = ({navigation}) => {
       for (let i = 0; i < list.fav.length; i++) {
         if (list.fav[i].isFavorite === true) {
           imagesData.push(images[i]);
+          counter++;
         }
       }
       setFavImages(imagesData);
       setFlatListData(listData);
+      if (counter > 0) {
+        setShowEmptyScreen(true);
+      } else {
+        setShowEmptyScreen(false);
+      }
     } else {
+      setShowEmptyScreen(false);
     }
   }, [list, ratesList]);
 
@@ -75,7 +85,7 @@ const FavoriteWatchList = ({navigation}) => {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{t.favCurrencyRates}</Text>
         </View>
-        {showFlatList && (
+        {showEmptyScreen && (
           <View style={styles.flatListContainer}>
             <View style={styles.thirdFlatListContainer}>
               <FlatList
@@ -91,6 +101,11 @@ const FavoriteWatchList = ({navigation}) => {
                 keyExtractor={item => item.id}
               />
             </View>
+          </View>
+        )}
+        {!showEmptyScreen && (
+          <View style={styles.emptyScreen}>
+            <Text style={styles.emptyScreenText}>{t.emptyScreenText}</Text>
           </View>
         )}
       </LinearGradient>

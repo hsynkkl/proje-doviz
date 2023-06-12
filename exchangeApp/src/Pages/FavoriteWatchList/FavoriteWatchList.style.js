@@ -42,6 +42,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: '100%',
   },
+  emptyScreenText: {
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    fontSize: 18,
+    lineHeight: 22,
+    textAlign: 'center',
+    color: '#FFFFFF',
+  },
+  emptyScreen: {
+    height: '50%',
+    paddingTop: '25%',
+  },
 });
 
 export default styles;

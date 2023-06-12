@@ -23,12 +23,12 @@ import TranslationsProvider from './Translation/TranslationProvider';
 import UserProvider from './context/Provider.js';
 import History from './Pages/History';
 import AccountsPage from './Pages/AccountsPage';
-import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
-export const socket = io('http://176.16.231.127:3000');
+export const socket = io('http://176.16.226.117:3000');
 socket.on('connect', () => {
   console.log('socket connected');
 });
@@ -63,13 +63,17 @@ const Router = () => {
           tabBarIcon: ({focused, size, colour}) => {
             let iconName;
             if (route.name == 'Döviz Listesi') {
-              iconName = focused ? 'list' : 'list';
-              size = focused ? size + 11 : size + 5;
+              iconName = focused
+                ? 'format-list-bulleted'
+                : 'format-list-bulleted';
+              size = focused ? size + 15 : size + 5;
             } else if (route.name == 'Favoriler') {
-              iconName = focused ? 'add-to-list' : 'add-to-list';
-              size = focused ? size + 11 : size + 5;
+              iconName = focused ? 'favorite' : 'favorite';
+              size = focused ? size + 15 : size + 5;
             }
-            return <Entypo name={iconName} size={size} colour={colour} />;
+            return (
+              <MaterialIcons name={iconName} size={size} colour={colour} />
+            );
           },
           tabBarStyle: {
             backgroundColor: '#FEB700',

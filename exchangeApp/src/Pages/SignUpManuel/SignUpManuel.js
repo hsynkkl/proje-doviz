@@ -14,7 +14,6 @@ import {
   ALERT_TYPE,
   Dialog,
   AlertNotificationRoot,
-  Toast,
 } from 'react-native-alert-notification';
 const SignUpCon = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();

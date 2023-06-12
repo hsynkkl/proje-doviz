@@ -104,6 +104,7 @@ export default {
     alertDangerPhoneNumber: 'Geçerli telefon numarası giriniz.',
     alertDangerPhoto: 'Lütfen fotoğraf ekleyiniz.',
     alertDangerLoginValues: 'Lütfen gerekli yerleri doldurunuz.',
+    emptyScreenText: 'FAVORİ LİSTENİZ BOŞ..',
   },
   eng: {
     welcome: 'Welcome.',
@@ -210,6 +211,7 @@ export default {
     alertDangerPhoneNumber: 'Please enter valid phone number.',
     alertDangerPhoto: 'Please add photos.',
     alertDangerLoginValues: 'Please fill in the required fields.',
+    emptyScreenText: 'YOUR FAVORITE LIST IS EMPTY..',
   },
   pl: {
     welcome: 'Powitanie.',
@@ -313,5 +315,6 @@ export default {
     alertDangerPhoneNumber: 'Podaj prawidłowy numer telefonu.',
     alertDangerPhoto: 'Proszę dodać zdjęcia.',
     alertDangerLoginValues: 'Proszę wypełnić wymagane pola.',
+    emptyScreenText: 'TWOJA LISTA ULUBIONYCH JEST PUSTA..',
   },
 };
