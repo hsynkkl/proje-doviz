@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {Formik} from 'formik';
 import styles from './SignUpManuel.style';
 import Input from '../../Components/TextInput';
@@ -14,6 +14,7 @@ import {
   ALERT_TYPE,
   Dialog,
   AlertNotificationRoot,
+  Toast,
 } from 'react-native-alert-notification';
 const SignUpCon = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
@@ -78,31 +79,46 @@ const SignUpCon = ({navigation}) => {
                     value={values.surname}
                     onType={handleChange('surname')}
                     placeHolder={t.surname}></Input>
-                  <Input
-                    //value={valueDatePlaceHolder}
-                    onType={handleChange('dobd')}
-                    onPressIn={() => {
-                      setOpen(true);
-                    }}
-                    placeHolder={t.dateofBD}
-                    value={datePlaceHolder}></Input>
-                  <DatePicker
-                    modal
-                    mode="date"
-                    open={open}
-                    date={date}
-                    confirmText="Seç"
-                    cancelText="İptal"
-                    title={'Doğum Tarihi'}
-                    onConfirm={date => {
-                      setOpen(false);
-                      setDate(date);
-                      setDatePlaceHolder(date.toString());
-                    }}
-                    onCancel={() => {
-                      setOpen(false);
-                    }}
-                  />
+                  <View
+                    style={{
+                      marginLeft: 25,
+                      height: '18%',
+                      marginTop: 10,
+                      marginBottom: 5,
+                    }}>
+                    <TouchableOpacity
+                      style={{
+                        justifyContent: 'center',
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        margin: 5,
+                        padding: 3,
+                        borderRadius: 5,
+                        width: 331.5,
+                        height: '90%',
+                      }}
+                      onPress={() => {
+                        setOpen(true);
+                      }}>
+                      <Text>{datePlaceHolder}</Text>
+                      <DatePicker
+                        modal
+                        mode="date"
+                        open={open}
+                        date={date}
+                        confirmText="Seç"
+                        cancelText="İptal"
+                        title={'Doğum Tarihi'}
+                        onConfirm={date => {
+                          setOpen(false);
+                          setDate(date);
+                          setDatePlaceHolder(date.toString());
+                        }}
+                        onCancel={() => {
+                          setOpen(false);
+                        }}
+                      />
+                    </TouchableOpacity>
+                  </View>
                   <Input
                     value={values.identifyNo}
                     onType={handleChange('identifyNo')}
