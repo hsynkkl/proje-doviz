@@ -10,8 +10,6 @@ export default function processHistory(userId) {
     const db = openDatabase({
       name: 'rn_sqlite',
     });
-
-    //console.log(userId[0].userId);
     db.transaction(txn => {
       txn.executeSql(
         `SELECT * FROM kullanicilar`,
@@ -37,20 +35,3 @@ export default function processHistory(userId) {
     });
   });
 }
-
-// db.transaction(txn => {
-//   txn.executeSql(
-//     `SELECT * FROM processHistory`,
-//     [],
-//     (sqlTxn, res) => {
-//       let len = res.rows.length;
-
-//       for (let i = 0; i < len; i++) {
-//         let item = res.rows.item(i);
-//       }
-//     },
-//     err => {
-//       console.log(err.message);
-//     },
-//   );
-// });

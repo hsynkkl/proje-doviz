@@ -8,6 +8,7 @@ import Line from '../../Components/Line';
 import LinearGradient from 'react-native-linear-gradient';
 import useTranslations from '../../Translation/useTranslations';
 import DatePicker from 'react-native-date-picker';
+import convertDate from '../../utils/Functions/otherFunctions/convertDate';
 import checkLoginValues from '../../utils/Functions/otherFunctions/checkLoginValues';
 import isTrueIdentify from '../../utils/Functions/otherFunctions/isTrueIdentify';
 import {
@@ -22,6 +23,7 @@ const SignUpCon = ({navigation}) => {
   const [open, setOpen] = useState(false);
   const [datePlaceHolder, setDatePlaceHolder] = useState(t.dateofBD);
   let isTrueLoginValues = false;
+
   const handleLogin = async values => {
     isTrueLoginValues = await checkLoginValues(
       values.name,
@@ -66,7 +68,7 @@ const SignUpCon = ({navigation}) => {
             </View>
           </View>
           <Formik
-            initialValues={{name: '', surname: '', dobd: '', identifyNo: ''}}
+            initialValues={{name: '', surname: '', identifyNo: ''}}
             onSubmit={handleLogin}>
             {({handleSubmit, handleChange, values}) => (
               <View>
@@ -79,39 +81,26 @@ const SignUpCon = ({navigation}) => {
                     value={values.surname}
                     onType={handleChange('surname')}
                     placeHolder={t.surname}></Input>
-                  <View
-                    style={{
-                      marginLeft: 25,
-                      height: '18%',
-                      marginTop: 10,
-                      marginBottom: 5,
-                    }}>
+                  <View style={styles.dateContainer}>
                     <TouchableOpacity
-                      style={{
-                        justifyContent: 'center',
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                        margin: 5,
-                        padding: 3,
-                        borderRadius: 5,
-                        width: 331.5,
-                        height: '90%',
-                      }}
+                      style={styles.innerDateContainer}
                       onPress={() => {
                         setOpen(true);
                       }}>
-                      <Text>{datePlaceHolder}</Text>
+                      <Text style={styles.dateText}>{datePlaceHolder}</Text>
                       <DatePicker
                         modal
                         mode="date"
                         open={open}
                         date={date}
-                        confirmText="Seç"
-                        cancelText="İptal"
-                        title={'Doğum Tarihi'}
+                        confirmText={t.confirmTextDate}
+                        cancelText={t.cancelTextDate}
+                        title={t.titleTextDate}
                         onConfirm={date => {
                           setOpen(false);
                           setDate(date);
-                          setDatePlaceHolder(date.toString());
+                          const dateString = date.toDateString();
+                          setDatePlaceHolder(convertDate(dateString.slice(4)));
                         }}
                         onCancel={() => {
                           setOpen(false);

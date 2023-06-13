@@ -86,32 +86,3 @@ export default function setDataToDB(
     }
   });
 }
-/*kullanici silme */
-//db.transaction(txn => {
-//   txn.executeSql(
-//     `DELETE FROM accounts`,
-//     [],
-//     (sqlTxn, res) => {
-//       alert('Kullanicilar silindi');
-
-//       setKullanici();
-//     },
-//     error => {
-//       console.log('error on adding category ' + error.message);
-//     },
-//   );
-// });
-/*drop table
-// db.transaction(txn => {
-//     txn.executeSql(
-//       `DROP TABLE accounts`,
-//       [],
-//       (sqlTxn, res) => {
-//         console.log("table created successfully");
-//       },
-//       error => {
-//         console.log("error on creating table " + error.message);
-//       },
-//     );
-//   });
- */

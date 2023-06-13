@@ -27,20 +27,3 @@ export default function getHistory(userIdStr) {
     });
   });
 }
-
-// db.transaction(txn => {
-//   txn.executeSql(
-//     `SELECT * FROM processHistory`,
-//     [],
-//     (sqlTxn, res) => {
-//       let len = res.rows.length;
-
-//       for (let i = 0; i < len; i++) {
-//         let item = res.rows.item(i);
-//       }
-//     },
-//     err => {
-//       console.log(err.message);
-//     },
-//   );
-// });

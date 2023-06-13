@@ -105,6 +105,9 @@ export default {
     alertDangerPhoto: 'Lütfen fotoğraf ekleyiniz.',
     alertDangerLoginValues: 'Lütfen gerekli yerleri doldurunuz.',
     emptyScreenText: 'FAVORİ LİSTENİZ BOŞ..',
+    confirmTextDate: 'Seç',
+    cancelTextDate: 'İptal',
+    titleTextDate: 'Doğum Tarihi',
   },
   eng: {
     welcome: 'Welcome.',
@@ -212,6 +215,9 @@ export default {
     alertDangerPhoto: 'Please add photos.',
     alertDangerLoginValues: 'Please fill in the required fields.',
     emptyScreenText: 'YOUR FAVORITE LIST IS EMPTY..',
+    confirmTextDate: 'Select',
+    cancelTextDate: 'Cancel',
+    titleTextDate: 'Date of Birth',
   },
   pl: {
     welcome: 'Powitanie.',
@@ -316,5 +322,8 @@ export default {
     alertDangerPhoto: 'Proszę dodać zdjęcia.',
     alertDangerLoginValues: 'Proszę wypełnić wymagane pola.',
     emptyScreenText: 'TWOJA LISTA ULUBIONYCH JEST PUSTA..',
+    confirmTextDate: 'Wybierać',
+    cancelTextDate: 'Anulować',
+    titleTextDate: 'Data urodzenia',
   },
 };

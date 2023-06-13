@@ -45,18 +45,7 @@ export default function processHistory(
           },
         );
       });
-      // db.transaction(txn => {
-      //   txn.executeSql(
-      //     `DROP TABLE processHistory`,
-      //     [],
-      //     (sqlTxn, res) => {
-      //       console.log('table created successfully');
-      //     },
-      //     error => {
-      //       console.log('error on creating table ' + error.message);
-      //     },
-      //   );
-      // });
+
       db.transaction(txn => {
         txn.executeSql(
           `INSERT INTO processHistory (userId,processDate,amountSold,sellingCurrencyRate,buyingCurrencyRate,sellingAccountId,buyingAccountId,sellingCurrencyTitle,buyingCurrencyTitle) VALUES (?,?,?,?,?,?,?,?,?)`,
@@ -82,20 +71,3 @@ export default function processHistory(
     }
   });
 }
-
-// db.transaction(txn => {
-//   txn.executeSql(
-//     `SELECT * FROM processHistory`,
-//     [],
-//     (sqlTxn, res) => {
-//       let len = res.rows.length;
-
-//       for (let i = 0; i < len; i++) {
-//         let item = res.rows.item(i);
-//       }
-//     },
-//     err => {
-//       console.log(err.message);
-//     },
-//   );
-// });

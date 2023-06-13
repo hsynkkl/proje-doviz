@@ -2,8 +2,6 @@ import {openDatabase} from 'react-native-sqlite-storage';
 
 export default function getAccFromDB(userId) {
   return new Promise(resolve => {
-    kayitVar = false;
-
     const db = openDatabase({
       name: 'rn_sqlite',
     });
@@ -19,7 +17,6 @@ export default function getAccFromDB(userId) {
               accounts.push(item);
             }
           }
-
           if (accounts.length > 0) {
             resolve(accounts);
           } else {

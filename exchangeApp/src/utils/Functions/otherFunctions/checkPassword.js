@@ -5,6 +5,5 @@ export default function checkPassword(password) {
     } else {
       resolve(true);
     }
-    //resolve(password);
   });
 }

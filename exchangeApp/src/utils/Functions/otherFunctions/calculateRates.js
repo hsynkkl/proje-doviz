@@ -5,10 +5,6 @@ export default function calculateRates(
   amount,
 ) {
   return new Promise(resolve => {
-    // const deneme = Math.random() * 10;
-    // const denemeStr = deneme.toFixed(0).toString();
-    // console.log(denemeStr);
-    // console.log(typeof denemeStr);
     let currenySellPrice = 1;
     let currenyBuyPrice = 1;
     const amountInt = parseInt(amount);
