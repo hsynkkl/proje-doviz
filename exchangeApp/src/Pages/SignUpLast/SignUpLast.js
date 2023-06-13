@@ -96,6 +96,7 @@ const SignUpLast = ({navigation, route}) => {
                   <View style={styles.inputContainer}>
                     <Input
                       value={values.phoneNumber}
+                      maxLength={11}
                       onType={handleChange('phoneNumber')}
                       placeHolder={t.phoneNumber}
                       keyboardType={'number-pad'}></Input>

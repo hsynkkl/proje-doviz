@@ -112,6 +112,7 @@ const SignUpCon = ({navigation}) => {
                     value={values.identifyNo}
                     onType={handleChange('identifyNo')}
                     placeHolder={t.inputTCSignUp}
+                    maxLength={11}
                     keyboardType={'number-pad'}></Input>
                 </View>
                 <View style={styles.buttonContainer}>

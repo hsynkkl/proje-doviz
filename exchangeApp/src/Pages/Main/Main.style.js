@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
   },
-
+  titleOfPage: {alignItems: 'center'},
   container: {
     flex: 1,
     marginTop: 20,
