@@ -6,6 +6,7 @@ export default function processHistory(userId) {
     var nameSurname;
     var phoneNumber;
     var photoUri;
+    var name;
     var dataList = [];
     const db = openDatabase({
       name: 'rn_sqlite',
@@ -23,9 +24,10 @@ export default function processHistory(userId) {
               nameSurname = item.name + ' ' + item.surname;
               phoneNumber = item.phoneNo;
               photoUri = item.photoUri;
+              name = item.name;
             }
           }
-          dataList = [nameSurname, phoneNumber, photoUri];
+          dataList = [nameSurname, phoneNumber, photoUri, name];
           resolve(dataList);
         },
         err => {

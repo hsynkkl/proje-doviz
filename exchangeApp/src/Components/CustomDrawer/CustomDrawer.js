@@ -24,7 +24,7 @@ const CustomDrawer = props => {
   useEffect(() => {
     async function fetchData() {
       datas = await getDataFromDB(userId);
-      setNameSurname(datas[0]);
+      setNameSurname(datas[3]);
       setPhoto(datas[2]);
     }
     fetchData();
