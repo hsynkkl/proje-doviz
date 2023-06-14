@@ -24,11 +24,15 @@ import UserProvider from './context/Provider.js';
 import History from './Pages/History';
 import AccountsPage from './Pages/AccountsPage';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Feather from 'react-native-vector-icons/Feather';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
-export const socket = io('http://176.16.224.146:3000');
+export const socket = io('http://176.16.223.58:3000');
 socket.on('connect', () => {
   console.log('socket connected');
 });
@@ -100,41 +104,87 @@ const Router = () => {
   }
   function Root() {
     return (
-      <Drawer.Navigator drawerContent={props => <CustomDrawer {...props} />}>
+      <Drawer.Navigator
+        drawerContent={props => <CustomDrawer {...props} />}
+        screenOptions={{
+          headerShown: false,
+          drawerActiveBackgroundColor: '#ffd180',
+          drawerActiveTintColor: '#8d6e63',
+          drawerInactiveBackgroundColor: '#FEB700',
+          drawerInactiveTintColor: '#3e2723',
+          drawerLabelStyle: {
+            marginLeft: -25,
+            fontFamily: 'Roboto-Medium',
+            fontSize: 15,
+          },
+        }}>
         <Drawer.Screen
           name="Anasayfa"
           component={Main}
-          options={{headerShown: false}}
+          options={{
+            drawerIcon: ({color}) => (
+              <Ionicons name="home-outline" size={22} color={color} />
+            ),
+          }}
         />
         <Drawer.Screen
           name="Hesap Oluştur"
           component={CreateAccStack}
-          options={{headerShown: false}}
+          options={{
+            drawerIcon: ({color}) => (
+              <Ionicons name="create-outline" size={22} color={color} />
+            ),
+          }}
         />
         <Drawer.Screen
           name="Profil"
           component={ProfileStack}
-          options={{headerShown: false}}
+          options={{
+            drawerIcon: ({color}) => (
+              <Ionicons name="person-outline" size={22} color={color} />
+            ),
+          }}
         />
         <Drawer.Screen
           name="Döviz Ekranı"
           component={WatchListStack}
-          options={{headerShown: false}}
+          options={{
+            drawerIcon: ({color}) => (
+              <Ionicons name="list-outline" size={22} color={color} />
+            ),
+          }}
         />
         <Drawer.Screen
           name="Alım - Satım"
           component={BuySell}
-          options={{headerShown: false}}
+          options={{
+            drawerIcon: ({color}) => (
+              <AntDesign name="swap" size={22} color={color} />
+            ),
+          }}
         />
         <Drawer.Screen
           name="İşlem Geçmişi"
           component={History}
-          options={{headerShown: false}}
+          options={{
+            drawerIcon: ({color}) => (
+              <Ionicons name="timer-outline" size={22} color={color} />
+              // <Feather name="refresh-ccw" size={22} color={color} />
+            ),
+          }}
         />
         <Drawer.Screen
           name="Hesaplarım"
           component={AccountsPage}
-          options={{headerShown: false}}
+          options={{
+            drawerIcon: ({color}) => (
+              <MaterialCommunityIcons
+                name="bank-outline"
+                size={22}
+                color={color}
+              />
+            ),
+          }}
         />
       </Drawer.Navigator>
     );

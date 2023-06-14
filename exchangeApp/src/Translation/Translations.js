@@ -108,6 +108,8 @@ export default {
     confirmTextDate: 'Seç',
     cancelTextDate: 'İptal',
     titleTextDate: 'Doğum Tarihi',
+    textDrawer: 'Merhaba, ',
+    textSignOut: 'Çıkış',
   },
   eng: {
     welcome: 'Welcome.',
@@ -218,6 +220,8 @@ export default {
     confirmTextDate: 'Select',
     cancelTextDate: 'Cancel',
     titleTextDate: 'Date of Birth',
+    textDrawer: 'Hello, ',
+    textSignOut: 'Sign Out',
   },
   pl: {
     welcome: 'Powitanie.',
@@ -325,5 +329,7 @@ export default {
     confirmTextDate: 'Wybierać',
     cancelTextDate: 'Anulować',
     titleTextDate: 'Data urodzenia',
+    textDrawer: 'Hello, ',
+    textSignOut: 'Sign Out',
   },
 };

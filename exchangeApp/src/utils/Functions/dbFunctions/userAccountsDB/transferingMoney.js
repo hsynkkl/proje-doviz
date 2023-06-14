@@ -2,7 +2,6 @@ import {openDatabase} from 'react-native-sqlite-storage';
 
 export default function transferingMoney(userId, amount, accountTypeSelling) {
   return new Promise(resolve => {
-    //const {t, changeLanguage} = useTranslations();
     if (!amount || !accountTypeSelling) {
       resolve(false);
     } else {
@@ -23,7 +22,6 @@ export default function transferingMoney(userId, amount, accountTypeSelling) {
               if (userIdStr === item.userId) {
                 if (item.currencyTypeText.includes(accountTypeSelling)) {
                   const balanceFloat = parseFloat(item.balance);
-                  console.log(balanceFloat - amountFloat);
                   if (amountFloat > balanceFloat) {
                     value = false;
                   } else {

@@ -6,7 +6,6 @@ import getDataFromDB from '../../utils/Functions/dbFunctions/usersDB/getDataFrom
 import {useSelector} from 'react-redux';
 import useTranslations from '../../Translation/useTranslations';
 import LanguageCard from '../../Components/LanguageCard/LanguageCard';
-import Lock from 'react-native-vector-icons/EvilIcons';
 
 const Profile = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
