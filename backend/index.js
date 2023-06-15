@@ -5,7 +5,7 @@ const socketIO = require("socket.io");
 const app = express();
 
 const server = app.listen(process.env.PORT, () => {
-  console.log(`Listning to ${PORT}`);
+  console.log(`Listening to ${PORT}`);
 });
 const socketHandler = socketIO(server);
 
