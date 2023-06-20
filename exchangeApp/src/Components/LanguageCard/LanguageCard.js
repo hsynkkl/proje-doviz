@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import styles from './LanguageCard.style';
 import useTranslations from '../../Translation/useTranslations';
@@ -7,10 +7,21 @@ import dataENG from '../../utils/datas/languageDataENG.json';
 import dataPL from '../../utils/datas/languageDataPL.json';
 import Item from '../LanguageCardItem';
 
-const LanguageCard = ({}) => {
+const LanguageCard = ({typeLanguage}) => {
+  useEffect(() => {
+    console.log('t:' + t.typeLanguage);
+    if (t.typeLanguage === 'TR') {
+      setFlatListData(dataTR);
+    } else if (t.typeLanguage === 'ENG') {
+      setFlatListData(dataENG);
+    } else if (t.typeLanguage === 'PL') {
+      setFlatListData(dataPL);
+    }
+  }, []);
   const {t, changeLanguage} = useTranslations();
   const [selectedId, setSelectedId] = useState();
-  const [flatListData, setFlatListData] = useState(dataTR);
+
+  const [flatListData, setFlatListData] = useState();
   const renderItem = ({item}) => {
     const backgroundColor = item.id === selectedId ? 'gray' : 'white';
     const color = item.id === selectedId ? 'white' : 'black';

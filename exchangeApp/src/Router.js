@@ -20,6 +20,8 @@ import WatchList from './Pages/WatchList';
 import FavoriteWatchList from './Pages/FavoriteWatchList';
 import BuySell from './Pages/BuySell';
 import TranslationsProvider from './Translation/TranslationProvider';
+import useTranslations from './Translation/useTranslations';
+
 import UserProvider from './context/Provider.js';
 import History from './Pages/History';
 import AccountsPage from './Pages/AccountsPage';
@@ -60,6 +62,8 @@ const Router = () => {
     );
   }
   function WatchListStack() {
+    const {t, changeLanguage} = useTranslations();
+
     return (
       <Tab.Navigator
         screenOptions={({route}) => ({
@@ -86,8 +90,20 @@ const Router = () => {
             color: '#ffffff',
           },
         })}>
-        <Tab.Screen name="Döviz Listesi" component={WatchList} />
-        <Tab.Screen name="Favoriler" component={FavoriteWatchList} />
+        <Tab.Screen
+          name="Döviz Listesi"
+          component={WatchList}
+          options={{
+            tabBarLabel: t.tabBarWatchListPage,
+          }}
+        />
+        <Tab.Screen
+          name="Favoriler"
+          component={FavoriteWatchList}
+          options={{
+            tabBarLabel: t.tabBarFavListPage,
+          }}
+        />
       </Tab.Navigator>
     );
   }
@@ -103,6 +119,7 @@ const Router = () => {
     );
   }
   function Root() {
+    const {t, changeLanguage} = useTranslations();
     return (
       <Drawer.Navigator
         drawerContent={props => <CustomDrawer {...props} />}
@@ -122,6 +139,7 @@ const Router = () => {
           name="Anasayfa"
           component={Main}
           options={{
+            drawerLabel: t.drawerMainPage,
             drawerIcon: ({color}) => (
               <Ionicons name="home-outline" size={22} color={color} />
             ),
@@ -131,6 +149,8 @@ const Router = () => {
           name="Hesap Oluştur"
           component={CreateAccStack}
           options={{
+            drawerLabel: t.drawerCreateAccPage,
+
             drawerIcon: ({color}) => (
               <Ionicons name="create-outline" size={22} color={color} />
             ),
@@ -140,6 +160,8 @@ const Router = () => {
           name="Profil"
           component={ProfileStack}
           options={{
+            drawerLabel: t.drawerProfilePage,
+
             drawerIcon: ({color}) => (
               <Ionicons name="person-outline" size={22} color={color} />
             ),
@@ -149,6 +171,8 @@ const Router = () => {
           name="Döviz Ekranı"
           component={WatchListStack}
           options={{
+            drawerLabel: t.drawerWatchListPage,
+
             drawerIcon: ({color}) => (
               <Ionicons name="list-outline" size={22} color={color} />
             ),
@@ -158,6 +182,8 @@ const Router = () => {
           name="Alım - Satım"
           component={BuySell}
           options={{
+            drawerLabel: t.drawerBuySellPage,
+
             drawerIcon: ({color}) => (
               <AntDesign name="swap" size={22} color={color} />
             ),
@@ -167,6 +193,8 @@ const Router = () => {
           name="İşlem Geçmişi"
           component={History}
           options={{
+            drawerLabel: t.drawerHistoryPage,
+
             drawerIcon: ({color}) => (
               <Ionicons name="timer-outline" size={22} color={color} />
               // <Feather name="refresh-ccw" size={22} color={color} />
@@ -177,6 +205,8 @@ const Router = () => {
           name="Hesaplarım"
           component={AccountsPage}
           options={{
+            drawerLabel: t.drawerAccPage,
+
             drawerIcon: ({color}) => (
               <MaterialCommunityIcons
                 name="bank-outline"

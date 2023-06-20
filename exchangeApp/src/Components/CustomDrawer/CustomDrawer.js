@@ -30,7 +30,7 @@ const CustomDrawer = props => {
     fetchData();
   }, [nameSurname]);
   const logOut = () => {
-    console.log('çıkış yapacak');
+    props.navigation.navigate('LoginPage');
   };
   return (
     <View style={styles.container}>
