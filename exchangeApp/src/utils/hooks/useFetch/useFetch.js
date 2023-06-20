@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
-import getAccounts from '../../utils/Functions/dbFunctions/userAccountsDB/getAccFromDB';
-import {socket} from '../../Router';
+import getAccounts from '../../Functions/dbFunctions/userAccountsDB/getAccFromDB';
+import {socket} from '../../../Router';
 function useFetch(userIdStr) {
   const [loading, setLoading] = useState();
   const [ratesList, setRatesList] = useState();

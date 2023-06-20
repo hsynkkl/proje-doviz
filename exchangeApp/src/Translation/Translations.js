@@ -220,7 +220,7 @@ export default {
     confirmTextDate: 'Select',
     cancelTextDate: 'Cancel',
     titleTextDate: 'Date of Birth',
-    textDrawer: 'Hello, ',
+    textDrawer: 'Hi, ',
     textSignOut: 'Sign Out',
   },
   pl: {
@@ -329,7 +329,7 @@ export default {
     confirmTextDate: 'Wybierać',
     cancelTextDate: 'Anulować',
     titleTextDate: 'Data urodzenia',
-    textDrawer: 'Hello, ',
-    textSignOut: 'Sign Out',
+    textDrawer: 'Witam, ',
+    textSignOut: 'Wyloguj Się',
   },
 };
