@@ -176,6 +176,7 @@ const BuySell = ({navigation}) => {
     setPriceBuying('');
     setUpperImage();
     setUnderImage();
+
     const accs = await getAccounts(userIdStr);
     dispatch({type: 'SET_FLATLISTDATA', payload: {datas: accs}});
     Dialog.show({
@@ -216,12 +217,15 @@ const BuySell = ({navigation}) => {
       setButtonTitleUnder(t.list);
     }
     const titles = await currencyTypeTextSplit(selectedUnderCurrencyTypeText);
-    setSellingItemShortTitle(titles[0]);
-    setSellingItemLongTitle(titles[1]);
-    if (typeof titles[0] !== undefined) {
-      for (let i = 0; i < images.length; i++) {
-        if (images[i].name === titles[0]) {
-          setUpperImage(images[i].src);
+
+    if (buttonTitleUnder === t.select) {
+      setSellingItemShortTitle(titles[0]);
+      setSellingItemLongTitle(titles[1]);
+      if (typeof titles[0] !== undefined) {
+        for (let i = 0; i < images.length; i++) {
+          if (images[i].name === titles[0]) {
+            setUpperImage(images[i].src);
+          }
         }
       }
     }
@@ -234,12 +238,14 @@ const BuySell = ({navigation}) => {
       setButtonTitleUpper(t.list);
     }
     const titles = await currencyTypeTextSplit(selectedUpperCurrencyTypeText);
-    setBuyingItemShortTitle(titles[0]);
-    setBuyingItemLongTitle(titles[1]);
-    if (typeof titles[0] !== undefined) {
-      for (let i = 0; i < images.length; i++) {
-        if (images[i].name === titles[0]) {
-          setUnderImage(images[i].src);
+    if (buttonTitleUpper === t.select) {
+      setBuyingItemShortTitle(titles[0]);
+      setBuyingItemLongTitle(titles[1]);
+      if (typeof titles[0] !== undefined) {
+        for (let i = 0; i < images.length; i++) {
+          if (images[i].name === titles[0]) {
+            setUnderImage(images[i].src);
+          }
         }
       }
     }
