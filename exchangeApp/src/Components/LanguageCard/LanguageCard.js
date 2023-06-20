@@ -9,7 +9,6 @@ import Item from '../LanguageCardItem';
 
 const LanguageCard = ({typeLanguage}) => {
   useEffect(() => {
-    console.log('t:' + t.typeLanguage);
     if (t.typeLanguage === 'TR') {
       setFlatListData(dataTR);
     } else if (t.typeLanguage === 'ENG') {

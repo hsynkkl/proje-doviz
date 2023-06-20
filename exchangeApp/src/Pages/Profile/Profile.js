@@ -27,7 +27,6 @@ const Profile = ({navigation}) => {
   }, []);
 
   const editLanguage = () => {
-    console.log(t.typeLanguage);
     setShowLanguageCard(!showLanguageCard);
   };
   return (

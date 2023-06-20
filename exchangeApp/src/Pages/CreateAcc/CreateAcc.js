@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Image, FlatList} from 'react-native';
 import styles from './CreateAcc.style';
 import LinearGradient from 'react-native-linear-gradient';
@@ -12,10 +12,12 @@ import RenderAcc from '../../Components/RenderAcc';
 const CreateAcc = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
   const dispatch = useDispatch();
+
   const [selectedIdExchange, setSelectedIdExchange] = useState();
   const [selectedTitleExchange, setSelectedTitleExchange] = useState();
   const [selectedIdAcc, setSelectedIdAcc] = useState();
   const [selectedTitleAcc, setSelectedTitleAcc] = useState();
+
   function goToCreateAccSecond() {
     navigation.navigate('CreateAccSecondPage', {
       exchangeType: [selectedIdExchange, selectedTitleExchange],
@@ -36,7 +38,7 @@ const CreateAcc = ({navigation}) => {
     ];
     dispatch({type: 'SET_ACCTYPES', payload: {accTypesDatas: accTypeDatas}});
   };
-  const renderItemAcc = ({item}) => {
+  const renderItemAcc = ({item, item2}) => {
     const backgroundColor = item.id === selectedIdAcc ? 'gray' : 'white';
     const color = item.id === selectedIdAcc ? 'white' : 'black';
     return (

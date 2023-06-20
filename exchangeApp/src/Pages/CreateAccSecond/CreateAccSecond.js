@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Image, FlatList} from 'react-native';
 import styles from './CreateAccSecond.style';
 import LinearGradient from 'react-native-linear-gradient';
