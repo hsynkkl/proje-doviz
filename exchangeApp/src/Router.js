@@ -34,7 +34,7 @@ import Feather from 'react-native-vector-icons/Feather';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
-export const socket = io('http://192.168.1.56:3000');
+export const socket = io('http://192.168.2.5:3000');
 socket.on('connect', () => {
   console.log('socket connected');
 });

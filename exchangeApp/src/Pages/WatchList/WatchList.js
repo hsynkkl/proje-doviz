@@ -9,6 +9,7 @@ import useTranslations from '../../Translation/useTranslations';
 import Data from '../../utils/datas/watchListFlatListData.json';
 import Item from '../../Components/WatchListItem';
 import ItemFlags from '../../Components/ItemFlags';
+import Loading from '../../Components/Loading';
 const ItemSwitch = ({item, index}) => {
   return (
     <View>
@@ -70,7 +71,7 @@ const WatchList = ({navigation}) => {
   };
 
   if (loading) {
-    return <ActivityIndicator size="large" />;
+    return <Loading />;
   }
   return (
     <View style={styles.containerLinear}>

@@ -7,6 +7,8 @@ import useTranslations from '../../Translation/useTranslations';
 import Item from '../../Components/FavoriteWatchListItem';
 import {socket} from '../../Router';
 import ItemFlags from '../../Components/ItemFlagsFav';
+import Loading from '../../Components/Loading';
+
 const FavoriteWatchList = ({navigation}) => {
   const list = useSelector(s => s.favList);
   const [showFlatList, setShowFlatList] = useState(false);
@@ -75,7 +77,7 @@ const FavoriteWatchList = ({navigation}) => {
   }, [list, ratesList]);
 
   if (loading) {
-    return <ActivityIndicator size="large" />;
+    return <Loading />;
   }
   return (
     <View style={styles.containerLinear}>

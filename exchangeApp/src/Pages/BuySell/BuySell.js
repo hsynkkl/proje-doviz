@@ -18,6 +18,8 @@ import RenderBuySellItem from '../../Components/RenderBuySellItem';
 import {useDispatch} from 'react-redux';
 import calculateRatesForAlert from '../../utils/Functions/otherFunctions/calculateRatesForAlert';
 import AmountInput from '../../Components/AmountInput/AmountInput';
+import Loading from '../../Components/Loading';
+
 import {
   ALERT_TYPE,
   Dialog,
@@ -279,7 +281,7 @@ const BuySell = ({navigation}) => {
   };
 
   if (loading) {
-    return <ActivityIndicator size="large" />;
+    return <Loading />;
   }
   const handleSearch = async text => {
     const calculatedRates = await calculateRates(

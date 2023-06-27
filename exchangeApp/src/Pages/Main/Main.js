@@ -15,6 +15,7 @@ import Item from '../../Components/MainItem';
 import useTranslations from '../../Translation/useTranslations';
 import TitleOfPage from '../../Components/TitleOfPages';
 import OpenDrawerButton from '../../Components/OpenDrawerButton';
+import Loading from '../../Components/Loading';
 
 const Main = ({navigation}) => {
   const {t, changeLanguage} = useTranslations();
@@ -46,7 +47,7 @@ const Main = ({navigation}) => {
     show();
   }, [accs]);
   if (loading === false) {
-    return <ActivityIndicator size="large" />;
+    return <Loading />;
   }
   const openMenu = async () => {
     navigation.openDrawer();
