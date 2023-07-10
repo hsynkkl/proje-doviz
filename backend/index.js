@@ -21,8 +21,12 @@ socketHandler.on("connection", (socket) => {
 });
 
 const getPrices = () => {
+  const getDate = () => {
+    const date = new Date();
+    return date;
+  };
   const randomValues = () => {
-    const value = Math.random() * 10 + 15;
+    const value = Math.random() * 10 + 20;
     const valueSTR = value.toFixed(3);
     return valueSTR.toString();
   };
@@ -84,6 +88,7 @@ const getPrices = () => {
       name: item.name,
       sellPrice: randomValues(),
       buyPrice: randomValues(),
+      time: getDate(),
     };
   });
 

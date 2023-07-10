@@ -1,5 +1,3 @@
-import {openDatabase} from 'react-native-sqlite-storage';
-
 export default function processHistory() {
   return new Promise(resolve => {
     var currentdate = new Date();
