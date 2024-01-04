@@ -6,14 +6,11 @@ import {useDispatch} from 'react-redux';
 import datas from '../../utils/datas/filterCard.json';
 import useTranslations from '../../Translation/useTranslations';
 
-//I did the necessary imports
-
 const Item = ({item, onPress, backgroundColor, textColor}) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
     <Text style={[styles.title, {color: textColor}]}>{item.title}</Text>
   </TouchableOpacity>
 );
-//
 const FilterCard = ({}) => {
   const {t, changeLanguage} = useTranslations();
 

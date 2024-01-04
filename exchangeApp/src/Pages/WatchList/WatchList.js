@@ -10,6 +10,7 @@ import Data from '../../utils/datas/watchListFlatListData.json';
 import Item from '../../Components/WatchListItem';
 import ItemFlags from '../../Components/ItemFlags';
 import Loading from '../../Components/Loading';
+import datas from './store';
 const ItemSwitch = ({item, index}) => {
   return (
     <View>
@@ -30,30 +31,18 @@ const ItemSwitch = ({item, index}) => {
   );
 };
 const WatchList = ({navigation}) => {
-  const {t, changeLanguage} = useTranslations();
-  const [deneme, setDeneme] = useState();
+  const {t} = useTranslations();
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const [ratesList, setRatesList] = useState();
   const [tempDataState, setTempDataState] = useState();
-  const [images, setimages] = useState([
-    {src: require('../../utils/imgs/1.png'), id: 1},
-    {src: require('../../utils/imgs/2.png'), id: 2},
-    {src: require('../../utils/imgs/3.png'), id: 3},
-    {src: require('../../utils/imgs/4.png'), id: 4},
-    {src: require('../../utils/imgs/5.png'), id: 5},
-    {src: require('../../utils/imgs/6.png'), id: 6},
-    {src: require('../../utils/imgs/7.png'), id: 7},
-    {src: require('../../utils/imgs/8.png'), id: 8},
-    {src: require('../../utils/imgs/9.png'), id: 9},
-    {src: require('../../utils/imgs/10.png'), id: 10},
-    {src: require('../../utils/imgs/11.png'), id: 11},
-    {src: require('../../utils/imgs/12.png'), id: 12},
-  ]);
+  const [images] = useState(datas);
+
   useEffect(() => {
     socket.on('exchange', data => {
       setRatesList(data);
       setLoading(false);
+      console.log(datas);
     });
   }, []);
 

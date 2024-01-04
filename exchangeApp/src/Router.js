@@ -34,7 +34,7 @@ import Feather from 'react-native-vector-icons/Feather';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
-export const socket = io('http://192.168.2.7:3000');
+export const socket = io('http://192.168.43.19:3000');
 socket.on('connect', () => {
   console.log('socket connected');
 });
@@ -197,7 +197,6 @@ const Router = () => {
 
             drawerIcon: ({color}) => (
               <Ionicons name="timer-outline" size={22} color={color} />
-              // <Feather name="refresh-ccw" size={22} color={color} />
             ),
           }}
         />

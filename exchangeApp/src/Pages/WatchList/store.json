@@ -1,0 +1,14 @@
+[
+  {"src": "require('../../utils/imgs/1.png')", "id": 1},
+  {"src": "require('../../utils/imgs/2.png')", "id": 2},
+  {"src": "require('../../utils/imgs/3.png')", "id": 3},
+  {"src": "require('../../utils/imgs/4.png')", "id": 4},
+  {"src": "require('../../utils/imgs/5.png')", "id": 5},
+  {"src": "require('../../utils/imgs/6.png')", "id": 6},
+  {"src": "require('../../utils/imgs/7.png')", "id": 7},
+  {"src": "require('../../utils/imgs/8.png')", "id": 8},
+  {"src": "require('../../utils/imgs/9.png')", "id": 9},
+  {"src": "require('../../utils/imgs/10.png')", "id": 10},
+  {"src": "require('../../utils/imgs/11.png')", "id": 11},
+  {"src": "require('../../utils/imgs/12.png')", "id": 12}
+]
