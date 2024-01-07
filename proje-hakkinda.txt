@@ -1,0 +1,14 @@
+hocam merhaba projeyi çalıştırmak için gerekenleri yazıyorum.
+öncelikle Router.js dosyası içerisindeki 37. kod satırını kendi local ip'niz ile değiştiriniz
+"export const socket = io('http://127.0.0.1:3000');"
+local ip öğrenmek için cmd'yi açıp ipconfig yazmanız yeterli.
+sonrasında sırasıyla bu kodları yazmanız yeterli
+## Start
+- cd proje-doviz/exchangeApp 
+- npx react-native start 
+- Open new terminal 
+- cd proje-doviz/exchangeApp 
+- npx react-native run-android 
+- Open new terminal 
+- cd proje-doviz/backend 
+- nodemon index.js 
